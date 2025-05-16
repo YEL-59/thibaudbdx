@@ -1,4 +1,6 @@
 import Logo from "@/assets/svg/logo";
+import Search from "@/assets/svg/search";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Navbar({ sidebarOpen, setSidebarOpen }) {
   return (
@@ -59,18 +61,33 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
 
         <div className="xl:flex flex-col gap-2 hidden">
           <p className="text-base leading-[164%]">Welcome Back</p>
-          <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px]">
-            Ivay
-          </h3>
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        <img src={<Logo />} alt="user" />
-        <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px]">
-            Ivay Jack
-          </h3>
-          <p className="text-base leading-[164%]">Ivayjack@outlook.com</p>
+
+      <div className="flex gap-10 justify-between">
+        <div class="relative w-lg max-w-2xl">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <Search />
+          </div>
+          <input
+            type="search"
+            id="default-search"
+            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search Mockups, Logos..."
+            required
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <Avatar className="h-12 w-12">
+            <AvatarImage src="https://i.pravatar.cc/40" alt="Ivay Jack" />
+            <AvatarFallback>IJ</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col ">
+            <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px]">
+              Ivay Jack
+            </h3>
+            <p className="text-base leading-[164%]">Ivayjack@outlook.com</p>
+          </div>
         </div>
       </div>
     </div>

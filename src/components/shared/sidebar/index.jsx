@@ -4,6 +4,16 @@ import { X } from "lucide-react";
 import Logo from "@/assets/svg/logo";
 import Home from "@/assets/svg/home";
 import Contact from "@/assets/svg/contact";
+import Note from "@/assets/svg/note";
+import Tasting from "@/assets/svg/tasting";
+import Docs from "@/assets/svg/docs";
+import Map from "@/assets/svg/map";
+import Tags from "@/assets/svg/tags";
+import Importex from "@/assets/svg/importex";
+import Subscription from "@/assets/svg/subscription";
+import Faq from "@/assets/svg/faq";
+import Support from "@/assets/svg/support";
+import Setting from "@/assets/svg/setting";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const sidebarRef = useRef(null);
@@ -28,16 +38,16 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const sidebars = [
     { label: "Home", icon: Home, path: "/" },
     { label: "Contact", icon: Contact, path: "/exchange-request" },
-    { label: "Notes", icon: Home, path: "/favourite" },
-    { label: "Tasting", icon: Home, path: "/messages" },
-    { label: "Docs", icon: Home, path: "/notification" },
-    { label: "Map", icon: Home, path: "/setting" },
-    { label: "Tags", icon: Home, path: "/" },
-    { label: "Import/Export", icon: Contact, path: "/exchange-request" },
-    { label: "Subscription", icon: Home, path: "/favourite" },
-    { label: "FAQ", icon: Home, path: "/messages" },
-    { label: "Support", icon: Home, path: "/notification" },
-    { label: "Settings", icon: Home, path: "/setting" },
+    { label: "Notes", icon: Note, path: "/favourite" },
+    { label: "Tasting", icon: Tasting, path: "/messages" },
+    { label: "Docs", icon: Docs, path: "/notification" },
+    { label: "Map", icon: Map, path: "/setting" },
+    { label: "Tags", icon: Tags, path: "/" },
+    { label: "Import/Export", icon: Importex, path: "/exchange-request" },
+    { label: "Subscription", icon: Subscription, path: "/favourite" },
+    { label: "FAQ", icon: Faq, path: "/messages" },
+    { label: "Support", icon: Support, path: "/notification" },
+    { label: "Settings", icon: Setting, path: "/setting" },
   ];
 
   return (
