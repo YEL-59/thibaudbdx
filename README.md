@@ -1,12 +1,58 @@
-# React + Vite
+# Thibaud BDX Dashboard 🌐
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **ThibaudBDX**, a modern and elegant dashboard built to streamline business workflows and display key insights — fast, clean, and user-focused.
 
-Currently, two official plugins are available:
+🌍 [Live Demo](https://thibaudbdx.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 **Secure Auth Flow** – Login/signup with protected routing
+- 📊 **Dashboard Insights** – Meetings, tasks, tasting schedules, and more
+- 🗂 **Data Cards** – Last Contacts, Products Added, and Sales Update
+- 📝 **Interactive Notes** – Add or update last sales notes using a clean UI
+- 🧱 **Responsive Layout** – Built with Tailwind CSS Grid & Flexbox
+- 🎨 **Modern Design** – ShadCN components with custom styling
+- ⚡ **Performance-First** – Deployed on Vercel for blazing speed
+
+---
+
+## 🛠 Tech Stack
+
+| Technology     | Usage                    |
+|----------------|--------------------------|
+| React          | Frontend Framework       |
+| Vite/Next.js   | Fast build & routing     |
+| Tailwind CSS   | Utility-first Styling    |
+| ShadCN UI      | Pre-styled UI Components |
+| Lucide Icons   | Icon set integration     |
+| Vercel         | Deployment Platform      |
+
+---
+
+## 📸 Screenshots
+
+![Dashboard Screenshot](./public/screenshot.png) <!-- Update if needed -->
+
+---
+
+## 🚀 Getting Started
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/your-username/thibaudbdx.git
+cd thibaudbdx
+pnpm install # or npm install / yarn install
+
+📬 Feedback
+Found a bug or have a feature request?
+
+Open an issue
+Submit a PR
+
+
+🧑‍💻 Author
+Made with ❤️ by Md.Tofayel Islam
+
