@@ -1,8 +1,11 @@
 import Logo from "@/assets/svg/logo";
 import Search from "@/assets/svg/search";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useLocation } from "react-router";
 
 function Navbar({ sidebarOpen, setSidebarOpen }) {
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[1] || "home";
   return (
     <div className="border-b border-[#E8E8E8] px-8 py-5 flex justify-between">
       <div className="flex items-center gap-4">
@@ -60,7 +63,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
         </button>
 
         <div className="xl:flex flex-col gap-2 hidden">
-          <p className="text-base leading-[164%]">Welcome Back</p>
+          <p className="text-base leading-[164%]">{currentPath}</p>
         </div>
       </div>
 

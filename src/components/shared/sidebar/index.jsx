@@ -42,11 +42,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { label: "Tasting", icon: Tasting, path: "/messages" },
     { label: "Docs", icon: Docs, path: "/notification" },
     { label: "Map", icon: Map, path: "/setting" },
-    { label: "Tags", icon: Tags, path: "/" },
-    { label: "Import/Export", icon: Importex, path: "/exchange-request" },
-    { label: "Subscription", icon: Subscription, path: "/favourite" },
-    { label: "FAQ", icon: Faq, path: "/messages" },
-    { label: "Support", icon: Support, path: "/notification" },
+    { label: "Tags", icon: Tags, path: "/tags" },
+    { label: "Import/Export", icon: Importex, path: "/importexport" },
+    { label: "Subscription", icon: Subscription, path: "/subscription" },
+    { label: "FAQ", icon: Faq, path: "/faq" },
+    { label: "Support", icon: Support, path: "/support" },
     { label: "Settings", icon: Setting, path: "/setting" },
   ];
 
