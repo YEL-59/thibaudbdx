@@ -37,7 +37,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   const sidebars = [
     { label: "Home", icon: Home, path: "/" },
-    { label: "Contact", icon: Contact, path: "/exchange-request" },
+    { label: "Contact", icon: Contact, path: "/contact" },
     { label: "Notes", icon: Note, path: "/favourite" },
     { label: "Tasting", icon: Tasting, path: "/messages" },
     { label: "Docs", icon: Docs, path: "/notification" },
