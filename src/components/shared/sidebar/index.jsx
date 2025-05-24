@@ -49,7 +49,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { label: "Support", icon: Support, path: "/support" },
     { label: "Settings", icon: Setting, path: "/setting" },
   ];
-  //add test commit
+  //add test commit commit also
+  //add test commit commit also
   return (
     <div
       ref={sidebarRef}
