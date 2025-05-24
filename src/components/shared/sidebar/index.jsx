@@ -34,9 +34,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [sidebarOpen, setSidebarOpen]);
-  //test
 
-  //test
   const sidebars = [
     { label: "Home", icon: Home, path: "/" },
     { label: "Contact", icon: Contact, path: "/exchange-request" },
@@ -51,7 +49,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { label: "Support", icon: Support, path: "/support" },
     { label: "Settings", icon: Setting, path: "/setting" },
   ];
-
+  //add test commit
   return (
     <div
       ref={sidebarRef}
