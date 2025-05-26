@@ -18,12 +18,28 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "contact/prospect-details/:id",
+        path: "contact/:section/:id",
         element: <ContactLayout />,
         children: [
           {
-            index: true,
+            path: "prospect-details",
             element: <h1>prospect details</h1>,
+          },
+          {
+            index: "meeting",
+            element: <h1>meeting details</h1>,
+          },
+          {
+            path: "task",
+            element: <h1>task details</h1>,
+          },
+          {
+            path: "notes",
+            element: <h1>notes details</h1>,
+          },
+          {
+            path: "tasting",
+            element: <h1>tasting details</h1>,
           },
         ],
       },

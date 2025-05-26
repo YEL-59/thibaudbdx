@@ -43,6 +43,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
   /* Og - added this */
   --color-text-heading: var(--text-heading);
+  --color-text-paragraph: var(--text-paragraph);
+  --font-poppins: var(--poppins-font);
 }
 
 :root {
@@ -80,6 +82,8 @@
   --sidebar-ring: oklch(0.708 0 0);
   /* OG - added this */
   --text-heading: #484848;
+  --text-paragraph: #848585;
+  --poppins-font: 'Poppins', sans-serif;
 }
 
 .dark {
