@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { X } from "lucide-react";
 import Logo from "@/assets/svg/logo";
 import Home from "@/assets/svg/home";
@@ -17,6 +17,7 @@ import Setting from "@/assets/svg/setting";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const sidebarRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -81,37 +82,21 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   key={index}
                   to={sidebar.path}
                   className={({ isActive }) =>
-                    `relative group flex items-center gap-2 rounded-r-[8px] pl-10 pr-4 py-2 overflow-hidden
-    ${
-      isActive
-        ? "bg-primary text-white font-semibold"
-        : "text-[#B1B1B1] hover:text-white"
-    }`
+                    `relative group flex items-center gap-2 rounded-r-[8px] pl-10 pr-4 py-2 overflow-hidden ${
+                      isActive
+                        ? "bg-primary text-white font-semibold"
+                        : "text-[#B1B1B1]"
+                    }`
                   }
-                  end
+                  state={{ from: location.pathname, isNew: true }}
                 >
                   {/* Background hover/active bar */}
                   <span
-                    className={`
-      absolute inset-y-0 left-0 w-screen z-[-1]
-      transition-all duration-200
-      ${
-        sidebar.path === window.location.pathname
-          ? "bg-primary"
-          : "group-hover:bg-primary"
-      }
-    `}
+                    className={`absolute inset-y-0 left-0 w-screen z-[-1] transition-all duration-200`}
                   />
                   <Icon className="w-5 h-5 stroke-current" />
                   <span
-                    className={`
-      font-poppins text-[14px] leading-[164%] capitalize z-10
-      ${
-        sidebar.path === window.location.pathname
-          ? "text-white font-semibold"
-          : "text-[#B1B1B1] group-hover:text-white"
-      }
-    `}
+                    className={`font-poppins text-[14px] leading-[164%] capitalize z-10`}
                   >
                     {sidebar.label}
                   </span>

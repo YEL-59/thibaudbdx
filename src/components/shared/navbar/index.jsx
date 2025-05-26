@@ -1,11 +1,19 @@
 import Logo from "@/assets/svg/logo";
 import Search from "@/assets/svg/search";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useLocation } from "react-router";
+import { useHasNestedRoute } from "@/hooks/hasNestedRoute";
+import { useLocation, useNavigate } from "react-router";
 
 function Navbar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
-  const currentPath = location.pathname.split("/")[1] || "home";
+  const hasNested = useHasNestedRoute();
+  const navigate = useNavigate();
+  const currentPath = location.pathname.split("/")[2]
+    ? location.pathname.split("/")[2]
+    : location.pathname.split("/")[1]
+    ? location.pathname.split("/")[1]
+    : "home";
+
   return (
     <div className="border-b border-[#E8E8E8] px-8 py-5 flex justify-between">
       <div className="flex items-center gap-4">
@@ -62,8 +70,29 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
           )}
         </button>
 
-        <div className="xl:flex flex-col gap-2 hidden">
-          <p className="text-base leading-[164%]">{currentPath}</p>
+        <div className="xl:flex gap-2 hidden items-center">
+          {hasNested && (
+            <div
+              onClick={() => navigate(location.state.from)}
+              className="p-1 border-2 border-primary rounded-xl"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <path
+                  d="M14.4372 16L21.0372 22.6L19.1518 24.4853L10.6665 16L19.1518 7.51465L21.0372 9.39998L14.4372 16Z"
+                  fill="#5F57FF"
+                />
+              </svg>
+            </div>
+          )}
+          <p className="text-xl font-semibold text-text-heading capitalize">
+            {currentPath}
+          </p>
         </div>
       </div>
 

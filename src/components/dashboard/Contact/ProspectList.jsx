@@ -9,9 +9,11 @@ import {
 } from "@/components/ui/table";
 import Noimg from "@/assets/svg/noimg";
 import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const mockData = [
   {
+    id: "defghjkwertyhujkl",
     ownerName: "John Doe",
     company: "Acme Inc.",
     address: "123 Main St, Dhaka",
@@ -20,6 +22,7 @@ const mockData = [
     contactType: "Prospect",
   },
   {
+    id: "dnvvjweerpocdndaspjdk",
     ownerName: "Jane Smith",
     company: "Beta Corp",
     address: "456 Market Rd, Chattogram",
@@ -27,9 +30,20 @@ const mockData = [
     email: "jane@beta.com",
     contactType: "Client",
   },
+  {
+    id: "dnvvjweerpocdndwgtaspjdk",
+    ownerName: "Jon Weeks",
+    company: "Beta Corp",
+    address: "456 Market Rd, Chattogram",
+    phone: "+8801912345678",
+    email: "weeks@beta.com",
+    contactType: "Client",
+  },
 ];
 
 const ProspectList = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedType, setSelectedType] = useState("Prospect");
 
   const renderTabComponent = () => {
@@ -69,7 +83,15 @@ const ProspectList = () => {
               </TableHeader>
               <TableBody>
                 {mockData.map((item, index) => (
-                  <TableRow key={index}>
+                  <TableRow
+                    key={index}
+                    onClick={() =>
+                      navigate(`/contact/prospect-details/${item.id}`, {
+                        state: { from: location.pathname, isNew: true },
+                      })
+                    }
+                    className="cursor-pointer hover:bg-gray-100 select-none"
+                  >
                     <TableCell>{item.ownerName}</TableCell>
                     <TableCell>{item.company}</TableCell>
                     <TableCell>{item.address}</TableCell>
