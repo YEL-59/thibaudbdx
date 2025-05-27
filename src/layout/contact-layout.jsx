@@ -94,6 +94,7 @@ export function ContactSubLayout() {
 function HeaderLayout() {
   const { id } = useParams();
   const isProspectDetails = useIsProspectDetails("prospect-details");
+  const location = useLocation();
 
   const filteredRoutes = isProspectDetails
     ? [contactMainRoutes[0]]
@@ -111,6 +112,7 @@ function HeaderLayout() {
                 isActive ? "bg-primary text-white" : ""
               }`
             }
+            state={{ from: location.pathname, isNew: true }}
           >
             {route.text}
           </NavLink>

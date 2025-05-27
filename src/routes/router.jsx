@@ -1,4 +1,5 @@
 import Contact from "@/components/dashboard/Contact";
+import ActivityPage from "@/components/dashboard/Contact/Activity/ActivityPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
           },
           {
             path: ":id/activity",
-            element: <h1>activity details</h1>,
+            element: <ActivityPage />,
           },
           {
             path: ":id/docs",
