@@ -2,14 +2,15 @@ import Logo from "@/assets/svg/logo";
 import Search from "@/assets/svg/search";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useHasNestedRoute } from "@/hooks/hasNestedRoute";
+import formatCustomerDetails from "@/lib/formatCustomerDetails";
 import { useLocation, useNavigate } from "react-router";
 
 function Navbar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
   const hasNested = useHasNestedRoute();
   const navigate = useNavigate();
-  const currentPath = location.pathname.split("/")[2]
-    ? location.pathname.split("/")[2]
+  const currentPath = location.pathname.split("/")[3]
+    ? location.pathname.split("/")[3]
     : location.pathname.split("/")[1]
     ? location.pathname.split("/")[1]
     : "home";
@@ -91,7 +92,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
             </div>
           )}
           <p className="text-xl font-semibold text-text-heading capitalize">
-            {currentPath}
+            {formatCustomerDetails(currentPath)}
           </p>
         </div>
       </div>

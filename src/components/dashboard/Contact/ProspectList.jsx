@@ -86,7 +86,7 @@ const ProspectList = () => {
                   <TableRow
                     key={index}
                     onClick={() =>
-                      navigate(`/contact/prospect-details/${item.id}`, {
+                      navigate(`/contact/${item.id}/customer-details`, {
                         state: { from: location.pathname, isNew: true },
                       })
                     }

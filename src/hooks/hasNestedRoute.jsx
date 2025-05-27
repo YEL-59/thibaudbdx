@@ -8,5 +8,8 @@ export function useHasNestedRoute() {
 
 export const useIsProspectDetails = () => {
   const location = useLocation();
-  return location.pathname.includes("prospect-details");
+  const pathSegments = location.pathname.split("/").filter(Boolean);
+  const lastSegment = pathSegments[pathSegments.length - 1];
+
+  return lastSegment === "customer-details";
 };
