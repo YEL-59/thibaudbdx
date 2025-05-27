@@ -93,11 +93,13 @@ function ActivityItem() {
   };
   return (
     <div className="space-y-5 mt-40">
-      {activityData.map((item) => (
+      {activityData.map((item, index) => (
         <Card
           className="px-3 py-2.5 rounded-xl flex-row justify-between items-center border-transparent cursor-pointer transition-transform duration-300 hover:scale-[101%]"
           key={item?.id}
           onClick={() => navigate(`/contact/${id}/customer-details/meeting`)}
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
         >
           <div className="flex items-center gap-5">
             <div className="bg-primary w-fit p-1.5 rounded-sm">

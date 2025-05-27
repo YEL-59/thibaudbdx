@@ -1,5 +1,7 @@
 import Contact from "@/components/dashboard/Contact";
 import ActivityPage from "@/components/dashboard/Contact/Activity/ActivityPage";
+import DocsPage from "@/components/dashboard/Contact/Docs/DocsPage";
+import SalesPage from "@/components/dashboard/Contact/Sales/SalesPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -58,11 +60,11 @@ export const router = createBrowserRouter([
           },
           {
             path: ":id/docs",
-            element: <h1>docs details</h1>,
+            element: <DocsPage />,
           },
           {
             path: ":id/sales",
-            element: <h1>sales details</h1>,
+            element: <SalesPage />,
           },
         ],
       },
