@@ -94,30 +94,29 @@ function ActivityItem() {
   return (
     <div className="space-y-5 mt-40">
       {activityData.map((item, index) => (
-        <Card
-          className="px-3 py-2.5 rounded-xl flex-row justify-between items-center border-transparent cursor-pointer transition-transform duration-300 hover:scale-[101%]"
-          key={item?.id}
-          onClick={() => navigate(`/contact/${id}/customer-details/meeting`)}
-          data-aos="fade-up"
-          data-aos-delay={index * 100}
-        >
-          <div className="flex items-center gap-5">
-            <div className="bg-primary w-fit p-1.5 rounded-sm">
-              {iconMap[item?.category]}
+        <div key={item?.id} data-aos="fade-up" data-aos-delay={index * 100}>
+          <Card
+            className="px-3 py-2.5 rounded-xl flex-row justify-between items-center border-transparent cursor-pointer transition-all duration-300 hover:scale-[101%]"
+            onClick={() => navigate(`/contact/${id}/customer-details/meeting`)}
+          >
+            <div className="flex items-center gap-5">
+              <div className="bg-primary w-fit p-1.5 rounded-sm">
+                {iconMap[item?.category]}
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-md font-medium text-shadow-card-foreground">
+                  {item?.title}
+                </h3>
+                <p className="text-[10px] font-normal text-text-paragraph">
+                  {item?.date}
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <h3 className="text-md font-medium text-shadow-card-foreground">
-                {item?.title}
-              </h3>
-              <p className="text-[10px] font-normal text-text-paragraph">
-                {item?.date}
-              </p>
-            </div>
-          </div>
-          <p className="text-[10px] font-normal text-text-paragraph">
-            {item?.time}
-          </p>
-        </Card>
+            <p className="text-[10px] font-normal text-text-paragraph">
+              {item?.time}
+            </p>
+          </Card>
+        </div>
       ))}
     </div>
   );
