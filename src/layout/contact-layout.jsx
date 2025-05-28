@@ -71,7 +71,7 @@ function DefaultLayout() {
 function CustomerDetailsLayout() {
   return (
     <div className="flex w-[90%]">
-      <div className="w-2/3 bg-red-200">
+      <div className="w-2/3">
         <HeaderLayout />
         <Outlet />
       </div>
