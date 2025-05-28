@@ -13,7 +13,6 @@
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ReactLenis from "lenis/react";
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
@@ -29,11 +28,7 @@ function AppInitializer() {
     });
   }, []);
 
-  return (
-    <ReactLenis root>
-      <RouterProvider router={router} />
-    </ReactLenis>
-  );
+  return <RouterProvider router={router} />;
 }
 
 createRoot(document.getElementById("root")).render(
