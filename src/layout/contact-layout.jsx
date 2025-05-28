@@ -3,7 +3,9 @@ import MeetingIcon from "@/assets/svg/meeting";
 import NotesIcon from "@/assets/svg/notes";
 import TaskIcon from "@/assets/svg/taskIcon";
 import TastingIcon from "@/assets/svg/tastingIcon";
+import SideSection from "@/components/dashboard/Contact/CustomerDetails/SideSection";
 import { useIsProspectDetails } from "@/hooks/hasNestedRoute";
+import { cn } from "@/lib/utils";
 import React from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router";
 
@@ -50,6 +52,13 @@ const subRoutes = [
 ];
 
 export function ContactLayout() {
+  const location = useLocation();
+  const isCustomerDetails = location.pathname.endsWith("/customer-details");
+
+  return isCustomerDetails ? <CustomerDetailsLayout /> : <DefaultLayout />;
+}
+
+function DefaultLayout() {
   return (
     <div>
       <div>
@@ -59,30 +68,42 @@ export function ContactLayout() {
     </div>
   );
 }
+function CustomerDetailsLayout() {
+  return (
+    <div className="flex w-[90%]">
+      <div className="w-2/3 bg-red-200">
+        <HeaderLayout />
+        <Outlet />
+      </div>
+      <div className="flex-1">
+        <SideSection />
+      </div>
+    </div>
+  );
+}
 
 export function ContactSubLayout() {
-  const { id } = useParams();
+  const { id: contactId } = useParams();
   const location = useLocation();
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       <div className="flex items-center gap-14 mt-5 px-6">
-        {subRoutes.map((route, index) => (
+        {subRoutes.map(({ path, icon }, index) => (
           <NavLink
             key={index}
-            to={`/contact/${id}/customer-details/${route.path}`}
+            to={`/contact/${contactId}/customer-details/${path}`}
             className={({ isActive }) =>
-              `flex items-center flex-col gap-2 cursor-pointer p-2 rounded-lg ${
+              cn(
+                "flex items-center flex-col gap-2 cursor-pointer p-2 rounded-lg",
                 isActive
                   ? "text-primary stroke-primary"
                   : "text-text-paragraph stroke-text-paragraph"
-              }`
+              )
             }
             state={{ from: location.pathname, isNew: true }}
           >
-            {route.icon}
-            <span className="text-xs font-poppins capitalize">
-              {route.path}
-            </span>
+            {icon}
+            <span className="text-xs font-poppins capitalize">{path}</span>
           </NavLink>
         ))}
       </div>
@@ -93,20 +114,20 @@ export function ContactSubLayout() {
 
 function HeaderLayout() {
   const { id } = useParams();
-  const isProspectDetails = useIsProspectDetails("prospect-details");
+  const isProspectDetails = useIsProspectDetails();
   const location = useLocation();
 
-  const filteredRoutes = isProspectDetails
+  const routesToDisplay = isProspectDetails
     ? [contactMainRoutes[0]]
     : contactMainRoutes;
 
   return (
     <div>
       <div className="flex items-center gap-5 mb-9">
-        {filteredRoutes.map((route, index) => (
+        {routesToDisplay.map(({ path, text }, index) => (
           <NavLink
             key={index}
-            to={`/contact/${id}/${route.path}`}
+            to={`/contact/${id}/${path}`}
             className={({ isActive }) =>
               `text-2xl font-semibold h-[75px] w-[260px] rounded-xl flex items-center justify-center font-poppins border-2 border-primary text-primary ${
                 isActive ? "bg-primary text-white" : ""
@@ -114,7 +135,7 @@ function HeaderLayout() {
             }
             state={{ from: location.pathname, isNew: true }}
           >
-            {route.text}
+            {text}
           </NavLink>
         ))}
       </div>

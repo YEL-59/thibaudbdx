@@ -1,5 +1,6 @@
 import Contact from "@/components/dashboard/Contact";
 import ActivityPage from "@/components/dashboard/Contact/Activity/ActivityPage";
+import CustomerDetailsPage from "@/components/dashboard/Contact/CustomerDetails/CustomerDetailsPage";
 import DocsPage from "@/components/dashboard/Contact/Docs/DocsPage";
 import SalesPage from "@/components/dashboard/Contact/Sales/SalesPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <h1>customer details</h1>,
+                element: <CustomerDetailsPage />,
               },
               {
                 path: "meeting",
