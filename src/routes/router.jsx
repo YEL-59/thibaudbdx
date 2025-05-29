@@ -8,6 +8,12 @@ import {
   MeetingPage,
 } from "@/components/dashboard/Contact/Meeting/MeetingPage";
 import MeetingsDetails from "@/components/dashboard/Contact/Meeting/MeetingsDetails";
+import CreateNotesPage from "@/components/dashboard/Contact/NotesDetails/CreateNotesPage";
+import NotesDetails from "@/components/dashboard/Contact/NotesDetails/NotesDetails";
+import {
+  NotesDetailsLayout,
+  NotesDetailsPage,
+} from "@/components/dashboard/Contact/NotesDetails/NotesDetailsPage";
 import SalesPage from "@/components/dashboard/Contact/Sales/SalesPage";
 import CreateTask from "@/components/dashboard/Contact/Task/CreateTask";
 import TaskDetails from "@/components/dashboard/Contact/Task/TaskDetails";
@@ -83,7 +89,21 @@ export const router = createBrowserRouter([
               },
               {
                 path: "notes",
-                element: <h1>notes details</h1>,
+                element: <NotesDetailsLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <NotesDetailsPage />,
+                  },
+                  {
+                    path: "notes-details/:notesId",
+                    element: <NotesDetails />,
+                  },
+                  {
+                    path: "create-notes",
+                    element: <CreateNotesPage />,
+                  },
+                ],
               },
               {
                 path: "tasting",
