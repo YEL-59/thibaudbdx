@@ -2,6 +2,12 @@ import Contact from "@/components/dashboard/Contact";
 import ActivityPage from "@/components/dashboard/Contact/Activity/ActivityPage";
 import CustomerDetailsPage from "@/components/dashboard/Contact/CustomerDetails/CustomerDetailsPage";
 import DocsPage from "@/components/dashboard/Contact/Docs/DocsPage";
+import CreateMeetingPage from "@/components/dashboard/Contact/Meeting/CreateMeetingPage";
+import {
+  MeetingLayout,
+  MeetingPage,
+} from "@/components/dashboard/Contact/Meeting/MeetingPage";
+import MeetingsDetails from "@/components/dashboard/Contact/Meeting/MeetingsDetails";
 import SalesPage from "@/components/dashboard/Contact/Sales/SalesPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
@@ -35,7 +41,21 @@ export const router = createBrowserRouter([
               },
               {
                 path: "meeting",
-                element: <h1>meeting details</h1>,
+                element: <MeetingLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <MeetingPage />,
+                  },
+                  {
+                    path: "meetings-details/:meetingId",
+                    element: <MeetingsDetails />,
+                  },
+                  {
+                    path: "create-meeting",
+                    element: <CreateMeetingPage />,
+                  },
+                ],
               },
               {
                 path: "task",

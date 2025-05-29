@@ -19,6 +19,8 @@ import { RouterProvider } from "react-router";
 import "./index.css";
 
 import { router } from "./routes/router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 function AppInitializer() {
   useEffect(() => {
@@ -31,7 +33,14 @@ function AppInitializer() {
     }, 500);
   }, []);
 
-  return <RouterProvider router={router} />;
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <Toaster />
+    </QueryClientProvider>
+  );
 }
 
 createRoot(document.getElementById("root")).render(
