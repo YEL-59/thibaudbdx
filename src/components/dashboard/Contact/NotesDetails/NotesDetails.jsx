@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import { useParams } from "react-router";
@@ -92,6 +93,12 @@ export default function NotesDetails() {
             {description}
           </CardContent>
         </Card>
+        {/* Delete Button */}
+        <div className="flex justify-center mt-16">
+          <Button className="bg-[#615EF0] text-white w-60 h-11 rounded-md text-base font-medium">
+            Delete
+          </Button>
+        </div>
       </div>
     </section>
   );

@@ -21,6 +21,12 @@ import {
   TaskPage,
   TaskPageLayout,
 } from "@/components/dashboard/Contact/Task/TaskPage";
+import CreateTesting from "@/components/dashboard/Contact/TastingDetails/CreateTasting";
+import TastingDetails from "@/components/dashboard/Contact/TastingDetails/TastingDetails";
+import {
+  TastingDetailsPage,
+  TastingDetailsPageLayout,
+} from "@/components/dashboard/Contact/TastingDetails/TastingDetailsPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -107,7 +113,21 @@ export const router = createBrowserRouter([
               },
               {
                 path: "tasting",
-                element: <h1>tasting details</h1>,
+                element: <TastingDetailsPageLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <TastingDetailsPage />,
+                  },
+                  {
+                    path: "tasting-details/:tastingId",
+                    element: <TastingDetails />,
+                  },
+                  {
+                    path: "create-tasting",
+                    element: <CreateTesting />,
+                  },
+                ],
               },
               {
                 path: "edit",
