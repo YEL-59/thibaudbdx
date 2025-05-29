@@ -26,6 +26,9 @@ function AppInitializer() {
       duration: 1000,
       once: true,
     });
+    setTimeout(() => {
+      AOS.refresh();
+    }, 500);
   }, []);
 
   return <RouterProvider router={router} />;

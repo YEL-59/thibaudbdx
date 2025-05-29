@@ -70,7 +70,7 @@ function DefaultLayout() {
 }
 function CustomerDetailsLayout() {
   return (
-    <div className="flex w-[90%]">
+    <div className="flex gap-24">
       <div className="w-2/3">
         <HeaderLayout />
         <Outlet />
