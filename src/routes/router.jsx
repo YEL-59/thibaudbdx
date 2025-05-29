@@ -9,6 +9,12 @@ import {
 } from "@/components/dashboard/Contact/Meeting/MeetingPage";
 import MeetingsDetails from "@/components/dashboard/Contact/Meeting/MeetingsDetails";
 import SalesPage from "@/components/dashboard/Contact/Sales/SalesPage";
+import CreateTask from "@/components/dashboard/Contact/Task/CreateTask";
+import TaskDetails from "@/components/dashboard/Contact/Task/TaskDetails";
+import {
+  TaskPage,
+  TaskPageLayout,
+} from "@/components/dashboard/Contact/Task/TaskPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -59,7 +65,21 @@ export const router = createBrowserRouter([
               },
               {
                 path: "task",
-                element: <h1>task details</h1>,
+                element: <TaskPageLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <TaskPage />,
+                  },
+                  {
+                    path: "task-details/:taskId",
+                    element: <TaskDetails />,
+                  },
+                  {
+                    path: "create-task",
+                    element: <CreateTask />,
+                  },
+                ],
               },
               {
                 path: "notes",
