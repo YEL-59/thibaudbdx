@@ -28,6 +28,10 @@ import {
   TastingDetailsPage,
   TastingDetailsPageLayout,
 } from "@/components/dashboard/Contact/TastingDetails/TastingDetailsPage";
+import {
+  NotesPage,
+  NotesPageLayout,
+} from "@/components/dashboard/Notes/NotesPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -151,6 +155,16 @@ export const router = createBrowserRouter([
           {
             path: ":id/sales",
             element: <SalesPage />,
+          },
+        ],
+      },
+      {
+        path: "notes",
+        element: <NotesPageLayout />,
+        children: [
+          {
+            index: true,
+            element: <NotesPage />,
           },
         ],
       },

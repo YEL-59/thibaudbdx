@@ -86,7 +86,7 @@ function TastingItem() {
           >
             <div className="flex items-center gap-5">
               <div className="bg-primary w-fit p-1.5 rounded-sm">
-                <DocsIcon />
+                <DocsIcon className={"stroke-white"} />
               </div>
               <div className="flex flex-col">
                 <h3 className="text-md font-medium text-shadow-card-foreground">
