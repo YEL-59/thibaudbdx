@@ -28,6 +28,8 @@ import {
   TastingDetailsPage,
   TastingDetailsPageLayout,
 } from "@/components/dashboard/Contact/TastingDetails/TastingDetailsPage";
+import AddTextNote from "@/components/dashboard/Notes/AddTextNote";
+import AddVoiceNote from "@/components/dashboard/Notes/AddVoiceNote";
 import {
   NotesPage,
   NotesPageLayout,
@@ -165,6 +167,14 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <NotesPage />,
+          },
+          {
+            path: "add-text-note",
+            element: <AddTextNote />,
+          },
+          {
+            path: "add-voice-note",
+            element: <AddVoiceNote />,
           },
         ],
       },

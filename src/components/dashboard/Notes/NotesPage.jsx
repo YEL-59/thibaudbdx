@@ -1,9 +1,66 @@
 import DocsIcon from "@/assets/svg/DocsIcon";
+import TwoUserIcon from "@/assets/svg/TwoUserIcon";
 import VoiceNotes from "@/assets/svg/VoiceNotes";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import images from "@/constants/images";
 import { useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router";
 
+const notesData = [
+  {
+    id: 1,
+    title: "Meet With Jhon",
+    date: "2nd April",
+    time: "8:30pm",
+    description:
+      "Discuss the upcoming project plans and deliverables with Jhon.",
+    location: "Office/ Zoom",
+    reminder: "10 minutes before",
+  },
+  {
+    id: 2,
+    title: "Meet With Jhon",
+    date: "2nd April",
+    time: "8:30pm",
+    description:
+      "Discuss the upcoming project plans and deliverables with Jhon.",
+    location: "Office/ Zoom",
+    reminder: "10 minutes before",
+  },
+  {
+    id: 3,
+    title: "Meet With Jhon",
+    date: "2nd April",
+    time: "8:30pm",
+    description:
+      "Discuss the upcoming project plans and deliverables with Jhon.",
+    location: "Office/ Zoom",
+    reminder: "10 minutes before",
+  },
+  {
+    id: 4,
+    title: "Meet With Jhon",
+    date: "2nd April",
+    time: "8:30pm",
+    description:
+      "Discuss the upcoming project plans and deliverables with Jhon.",
+    location: "Office/ Zoom",
+    reminder: "10 minutes before",
+  },
+  {
+    id: 5,
+    title: "Meet With Jhon",
+    date: "2nd April",
+    time: "8:30pm",
+    description:
+      "Discuss the upcoming project plans and deliverables with Jhon.",
+    location: "Office/ Zoom",
+    reminder: "10 minutes before",
+  },
+];
+
+// Note Page Layout
 export function NotesPageLayout() {
   return (
     <div>
@@ -12,17 +69,89 @@ export function NotesPageLayout() {
   );
 }
 
+// Note Page
 export function NotesPage() {
+  const hasNotesData = notesData.length > 0;
+
+  let content;
+
+  switch (hasNotesData) {
+    case true:
+      content = <NotesItem />;
+      break;
+    case false:
+      content = <NoDataPage />;
+      break;
+  }
+
   return (
     <section>
-      <div className="container">
-        <CreateContactButton />
+      <div className="container mb-20">
+        {content}
+        <CreateButton />
       </div>
     </section>
   );
 }
 
-function CreateContactButton() {
+function NoDataPage() {
+  return (
+    <div className="h-[70vh] flex flex-col items-center justify-center">
+      <img src={images.empty_folder} alt="Empty Folder" />
+      <div className="text-center mt-4">
+        <p className="text-sm font-poppins text-text-paragraph-400">
+          No Activity Yet
+        </p>
+        <p className="text-sm font-poppins text-text-paragraph-400 mt-3">
+          Activities will start appearing here once you initiate any actions{" "}
+          <br />
+          with your contact
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function NotesItem() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  return (
+    <div className="space-y-5 mt-10">
+      {notesData.map((item, index) => (
+        <div key={item?.id} data-aos="fade-up" data-aos-delay={index * 100}>
+          <Card
+            className="px-3 py-2.5 rounded-xl flex-row justify-between items-center border-transparent cursor-pointer transition-all duration-300 hover:scale-[101%]"
+            onClick={() =>
+              navigate(
+                `/contact/${id}/customer-details/meeting/meetings-details/${item?.id}`
+              )
+            }
+          >
+            <div className="flex items-center gap-5">
+              <div className="bg-primary w-fit p-1.5 rounded-sm">
+                <TwoUserIcon />
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-md font-medium text-shadow-card-foreground">
+                  {item?.title}
+                </h3>
+                <p className="text-[10px] font-normal text-text-paragraph">
+                  {item?.date}
+                </p>
+              </div>
+            </div>
+            <p className="text-[10px] font-normal text-text-paragraph">
+              {item?.time}
+            </p>
+          </Card>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Create Button
+function CreateButton() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
@@ -81,7 +210,10 @@ function DropdownButton() {
       >
         <div
           onClick={() =>
-            navigate(`add-contact`, { state: location.pathname, replace: true })
+            navigate(`add-text-note`, {
+              state: location.pathname,
+              replace: true,
+            })
           }
           className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer"
         >
@@ -89,11 +221,14 @@ function DropdownButton() {
         </div>
         <Button
           onClick={() =>
-            navigate(`add-contact`, { state: location.pathname, replace: true })
+            navigate(`add-text-note`, {
+              state: location.pathname,
+              replace: true,
+            })
           }
           className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer"
         >
-          Add a Contact
+          Add Text Note
         </Button>
       </div>
       <div
@@ -101,11 +236,27 @@ function DropdownButton() {
         data-aos="fade-up"
         data-aos-delay="400"
       >
-        <div className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer">
+        <div
+          onClick={() =>
+            navigate(`add-voice-note`, {
+              state: location.pathname,
+              replace: true,
+            })
+          }
+          className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer"
+        >
           <VoiceNotes className="w-7 h-7 stroke-gray-700 group-hover:stroke-white transition-colors duration-500" />
         </div>
-        <Button className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer">
-          Import from CSV
+        <Button
+          onClick={() =>
+            navigate(`add-voice-note`, {
+              state: location.pathname,
+              replace: true,
+            })
+          }
+          className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer"
+        >
+          Add Voice Note
         </Button>
       </div>
     </div>
