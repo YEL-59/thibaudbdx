@@ -97,7 +97,11 @@ function TaskItem() {
 
 function CreateMeetingButton() {
   return (
-    <div className="bg-secondary absolute bottom-20 right-20 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4">
+    <div
+      className="bg-secondary absolute bottom-20 right-20 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4"
+      data-aos="zoom-in"
+      data-aos-delay="700"
+    >
       <Link
         to="create-task"
         className="bg-primary p-5 rounded-full inline-block"

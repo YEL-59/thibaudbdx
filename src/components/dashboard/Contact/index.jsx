@@ -9,6 +9,7 @@ import Mapicon from "@/assets/svg/mapicon";
 import Noimg from "@/assets/svg/noimg";
 import ProspectList from "./ProspectList";
 import MapTable from "./MapTable";
+import { Link } from "react-router";
 
 // Dummy components for each tab
 
@@ -58,7 +59,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="relative grid grid-cols-1  gap-6 p-4">
+    <div className="grid grid-cols-1  gap-6 p-4">
       {/* Left Column */}
       <div className="space-y-6">
         {/* Tabs + Content */}
@@ -116,15 +117,45 @@ export default function Contact() {
       </div>
 
       {/* Floating Add Button */}
-      <div
-        className="absolute bottom-0 right-0"
-        data-aos="zoom-in"
-        data-aos-delay="700"
+      <CreateContactButton />
+    </div>
+  );
+}
+
+function CreateContactButton() {
+  return (
+    <div
+      className="bg-secondary absolute bottom-20 right-20 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4"
+      data-aos="zoom-in"
+      data-aos-delay="700"
+    >
+      <Link
+        to="create-tasting"
+        className="bg-primary p-5 rounded-full inline-block"
       >
-        <Button className="rounded-full w-14 h-14 text-3xl bg-[#615EF0] text-white shadow-lg">
-          +
-        </Button>
-      </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="36"
+          height="36"
+          viewBox="0 0 36 36"
+          fill="none"
+        >
+          <path
+            d="M7.60568 18.0002H28.3936"
+            stroke="white"
+            strokeWidth="2.54545" 
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M18 28.3941V7.6062"
+            stroke="white"
+            strokeWidth="2.54545"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </Link>
     </div>
   );
 }
