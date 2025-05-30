@@ -1,5 +1,6 @@
 import Contact from "@/components/dashboard/Contact";
 import ActivityPage from "@/components/dashboard/Contact/Activity/ActivityPage";
+import AddContactPage from "@/components/dashboard/Contact/AddContact/AddContactPage";
 import CustomerDetailsPage from "@/components/dashboard/Contact/CustomerDetails/CustomerDetailsPage";
 import DocsPage from "@/components/dashboard/Contact/Docs/DocsPage";
 import CreateMeetingPage from "@/components/dashboard/Contact/Meeting/CreateMeetingPage";
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "contact/add-contact",
+        element: <AddContactPage />,
       },
       {
         path: "contact",

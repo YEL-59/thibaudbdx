@@ -229,7 +229,11 @@ const CustomerDetailsPage = () => {
             <p className="text-sm text-text-paragraph-400 mt-1">234</p>
           </Card>
         </div>
-        <div className="bg-[#B3B7FE] border-2 rounded-2xl py-4 px-5 mt-11">
+        <div
+          className="bg-[#B3B7FE] border-2 rounded-2xl py-4 px-5 mt-11"
+          data-aos="fade-up"
+          data-aos-delay="1000"
+        >
           <h3 className="text-[32px] font-semibold text-[#08018B]">
             Last Sales Update
           </h3>

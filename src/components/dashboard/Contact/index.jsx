@@ -9,7 +9,10 @@ import Mapicon from "@/assets/svg/mapicon";
 import Noimg from "@/assets/svg/noimg";
 import ProspectList from "./ProspectList";
 import MapTable from "./MapTable";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import UserPlus from "@/assets/svg/UserPlus";
+import ImportFolder from "@/assets/svg/ImportFolder";
+import ImportFromGoogle from "@/assets/svg/ImportFromGoogle";
 
 // Dummy components for each tab
 
@@ -123,39 +126,114 @@ export default function Contact() {
 }
 
 function CreateContactButton() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
-    <div
-      className="bg-secondary absolute bottom-20 right-20 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4"
-      data-aos="zoom-in"
-      data-aos-delay="700"
-    >
-      <Link
-        to="create-tasting"
-        className="bg-primary p-5 rounded-full inline-block"
+    <div className="absolute bottom-20 right-20">
+      <div className="absolute bottom-32 right-24">
+        {isDropdownOpen && <DropdownButton />}
+      </div>
+      <div
+        className="bg-secondary absolute bottom-0 right-0 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4 w-fit"
+        data-aos="zoom-in"
+        data-aos-delay="700"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
-          viewBox="0 0 36 36"
-          fill="none"
+        <button
+          className={`bg-primary p-5 rounded-full inline-block transition-transform duration-300 ${
+            isDropdownOpen ? "rotate-45 scale-95" : ""
+          }`}
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <path
-            d="M7.60568 18.0002H28.3936"
-            stroke="white"
-            strokeWidth="2.54545" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M18 28.3941V7.6062"
-            stroke="white"
-            strokeWidth="2.54545"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 36 36"
+            fill="none"
+          >
+            <path
+              d="M7.60568 18.0002H28.3936"
+              stroke="white"
+              strokeWidth="2.54545"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M18 28.3941V7.6062"
+              stroke="white"
+              strokeWidth="2.54545"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DropdownButton() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  return (
+    <div className="space-y-5">
+      <div
+        className="flex items-center gap-2 group"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <div
+          onClick={() =>
+            navigate(`add-contact`, { state: location.pathname, replace: true })
+          }
+          className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer"
+        >
+          <UserPlus className="w-7 h-7 stroke-gray-700 group-hover:stroke-white transition-colors duration-500" />
+        </div>
+        <Button
+          onClick={() =>
+            navigate(`add-contact`, { state: location.pathname, replace: true })
+          }
+          className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer"
+        >
+          Add a Contact
+        </Button>
+      </div>
+      <div
+        className="flex items-center gap-2 group"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
+        <div className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer">
+          <ImportFolder className="w-7 h-7 stroke-gray-700 group-hover:stroke-white transition-colors duration-500" />
+        </div>
+        <Button className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer">
+          Import from CSV
+        </Button>
+      </div>
+      <div
+        className="flex items-center gap-2 group"
+        data-aos="fade-up"
+        data-aos-delay="500"
+      >
+        <div className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer">
+          <ImportFolder className="w-7 h-7 stroke-gray-700 group-hover:stroke-white transition-colors duration-500" />
+        </div>
+        <Button className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer">
+          Import from Contacts
+        </Button>
+      </div>
+      <div
+        className="flex items-center gap-2 group"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
+        <div className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer">
+          <ImportFromGoogle className="w-7 h-7 fill-gray-700 group-hover:fill-white transition-colors duration-500" />
+        </div>
+        <Button className="rounded-full !py-3 h-auto w-[254px] m-0 bg-white border text-text-paragraph group-hover:text-white group-hover:bg-primary transition-colors duration-500 cursor-pointer">
+          Import from Google
+        </Button>
+      </div>
     </div>
   );
 }

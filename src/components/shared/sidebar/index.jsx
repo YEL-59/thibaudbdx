@@ -55,8 +55,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <div
       ref={sidebarRef}
-      className={`border-r border-[#E8E8E8] px-5 md:px-6 lg:px-8 py-3 flex-shrink-0 h-full fixed top-0 xl:static xl:shadow-none bg-white z-10 duration-500 ${
-        !sidebarOpen ? "-left-full" : "left-0 shadow-lg"
+      className={`border-r border-[#E8E8E8] px-5 md:px-6 lg:px-8 py-3 flex-shrink-0 h-full fixed top-0 xl:shadow-none bg-white z-10 duration-500 ${
+        !sidebarOpen ? "-left-full xl:left-0" : "left-0 shadow-lg"
       }`}
     >
       <div className="flex flex-col h-full justify-between">

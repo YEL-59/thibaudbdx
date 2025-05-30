@@ -10,6 +10,7 @@ import {
 import Noimg from "@/assets/svg/noimg";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
+import images from "@/constants/images";
 
 const mockData = [
   {
@@ -44,20 +45,38 @@ const mockData = [
 const ProspectList = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedType, setSelectedType] = useState("Prospect");
 
-  const renderTabComponent = () => {
-    switch (selectedType) {
-      case "Prospect":
-        return <ProspectList />;
-      case "Client":
-        return <ClientList />;
-      case "Inactive":
-        return <InactiveList />;
-      default:
-        return null;
-    }
-  };
+  const hasProspectDetails = mockData.length > 0;
+
+  // const [selectedType, setSelectedType] = useState("Prospect");
+
+  // const renderTabComponent = () => {
+  //   switch (selectedType) {
+  //     case "Prospect":
+  //       return <ProspectList />;
+  //     case "Client":
+  //       return <ClientList />;
+  //     case "Inactive":
+  //       return <InactiveList />;
+  //     default:
+  //       return null;
+  //   }
+  // };
+
+  if (!hasProspectDetails) {
+    return (
+      <div className="h-[70vh] flex flex-col items-center justify-center">
+        <img src={images.empty_folder_3} alt="Empty Folder" />
+        <div className="text-center mt-4">
+          <p className="text-sm font-poppins text-text-paragraph-400 mt-3">
+            You don’t have any prospect. <br />
+            Add prospect!
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div data-aos="fade-up">
       {mockData.length === 0 ? (
