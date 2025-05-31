@@ -33,7 +33,7 @@ Welcome to **ThibaudBDX**, a modern and elegant dashboard built to streamline bu
 
 ## 📸 Screenshots
 
-![Dashboard Screenshot](./public/screenshot.png) <!-- Update if needed -->
+![Dashboard Screenshot](./public/image.png) <!-- Update if needed -->
 
 ---
 
