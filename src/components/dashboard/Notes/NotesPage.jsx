@@ -86,7 +86,7 @@ export function NotesPage() {
 
   return (
     <section>
-      <div className="container mb-20">
+      <div className="container mb-20 px-5 md:px-0">
         {content}
         <CreateButton />
       </div>
