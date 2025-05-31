@@ -1,8 +1,14 @@
 import Logo from "@/assets/svg/logo";
 import Search from "@/assets/svg/search";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { useHasNestedRoute } from "@/hooks/hasNestedRoute";
 import formatCustomerDetails from "@/lib/formatCustomerDetails";
+import { CalendarIcon } from "lucide-react";
 import { useLocation, useNavigate } from "react-router";
 
 function Navbar({ sidebarOpen, setSidebarOpen }) {
@@ -16,7 +22,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
     : "home";
 
   return (
-    <div className="border-b border-[#E8E8E8] px-8 py-5 flex justify-between">
+    <div className="border-b border-[#E8E8E8] px-5 md:px-8 py-5 flex justify-between">
       <div className="flex items-center gap-4">
         <button
           className="xl:hidden"
@@ -98,7 +104,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
       </div>
 
       <div className="flex gap-10 justify-between">
-        <div class="relative w-lg max-w-2xl">
+        <div class="relative md:w-lg md:max-w-2xl">
           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <Search />
           </div>
@@ -110,17 +116,20 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
             required
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
           <Avatar className="h-12 w-12">
             <AvatarImage src="https://i.pravatar.cc/40" alt="Ivay Jack" />
             <AvatarFallback>IJ</AvatarFallback>
           </Avatar>
-          <div className="flex flex-col ">
+          <div className=" flex-col">
             <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px]">
               Ivay Jack
             </h3>
             <p className="text-base leading-[164%]">Ivayjack@outlook.com</p>
           </div>
+        </div>
+        <div className="md:hidden flex">
+          <PopOver />
         </div>
       </div>
     </div>
@@ -128,3 +137,36 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
 }
 
 export default Navbar;
+
+function PopOver() {
+  return (
+    <HoverCard>
+      <HoverCardTrigger className="cursor-pointer">
+        <Avatar className="h-12 w-12">
+          <AvatarImage src="https://i.pravatar.cc/40" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </HoverCardTrigger>
+      <HoverCardContent className="w-full max-w-xs">
+        <div className="flex justify-between space-x-4">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <div className="space-y-1">
+            <h4 className="text-sm font-semibold">@shadcn</h4>
+            <p className="text-sm">
+              The founder of Shadcn UI. I own a computer.
+            </p>
+            <div className="flex items-center pt-2">
+              <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+              <span className="text-xs text-muted-foreground">
+                Joined December 2021
+              </span>
+            </div>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}

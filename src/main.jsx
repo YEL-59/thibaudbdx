@@ -13,13 +13,14 @@
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ReactLenis from "lenis/react";
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import "./index.css";
 
 import { router } from "./routes/router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 function AppInitializer() {
   useEffect(() => {
@@ -27,12 +28,18 @@ function AppInitializer() {
       duration: 1000,
       once: true,
     });
+    setTimeout(() => {
+      AOS.refresh();
+    }, 500);
   }, []);
 
+  const queryClient = new QueryClient();
+
   return (
-    <ReactLenis root>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </ReactLenis>
+      <Toaster />
+    </QueryClientProvider>
   );
 }
 
