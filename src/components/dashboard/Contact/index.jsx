@@ -62,12 +62,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="grid grid-cols-1  gap-6 p-4">
+    <div className="grid grid-cols-1 gap-6 p-4">
       {/* Left Column */}
       <div className="space-y-6">
         {/* Tabs + Content */}
         <section className="space-y-4" data-aos="fade-up">
-          <div className="flex justify-between">
+          <div className="flex justify-between lg:items-center flex-col lg:flex-row gap-y-5">
             {/* Tabs */}
             <div className="flex flex-wrap gap-2 font-['poppins']">
               {["Prospect", "Client", "Inactive"].map((type) => (
