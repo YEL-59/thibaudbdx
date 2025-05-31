@@ -1,7 +1,39 @@
 import Contact from "@/components/dashboard/Contact";
 import ActivityPage from "@/components/dashboard/Contact/Activity/ActivityPage";
+import AddContactPage from "@/components/dashboard/Contact/AddContact/AddContactPage";
+import CustomerDetailsPage from "@/components/dashboard/Contact/CustomerDetails/CustomerDetailsPage";
 import DocsPage from "@/components/dashboard/Contact/Docs/DocsPage";
+import CreateMeetingPage from "@/components/dashboard/Contact/Meeting/CreateMeetingPage";
+import {
+  MeetingLayout,
+  MeetingPage,
+} from "@/components/dashboard/Contact/Meeting/MeetingPage";
+import MeetingsDetails from "@/components/dashboard/Contact/Meeting/MeetingsDetails";
+import CreateNotesPage from "@/components/dashboard/Contact/NotesDetails/CreateNotesPage";
+import NotesDetails from "@/components/dashboard/Contact/NotesDetails/NotesDetails";
+import {
+  NotesDetailsLayout,
+  NotesDetailsPage,
+} from "@/components/dashboard/Contact/NotesDetails/NotesDetailsPage";
 import SalesPage from "@/components/dashboard/Contact/Sales/SalesPage";
+import CreateTask from "@/components/dashboard/Contact/Task/CreateTask";
+import TaskDetails from "@/components/dashboard/Contact/Task/TaskDetails";
+import {
+  TaskPage,
+  TaskPageLayout,
+} from "@/components/dashboard/Contact/Task/TaskPage";
+import CreateTesting from "@/components/dashboard/Contact/TastingDetails/CreateTasting";
+import TastingDetails from "@/components/dashboard/Contact/TastingDetails/TastingDetails";
+import {
+  TastingDetailsPage,
+  TastingDetailsPageLayout,
+} from "@/components/dashboard/Contact/TastingDetails/TastingDetailsPage";
+import AddTextNote from "@/components/dashboard/Notes/AddTextNote";
+import AddVoiceNote from "@/components/dashboard/Notes/AddVoiceNote";
+import {
+  NotesPage,
+  NotesPageLayout,
+} from "@/components/dashboard/Notes/NotesPage";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -21,6 +53,10 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
       {
+        path: "contact/add-contact",
+        element: <AddContactPage />,
+      },
+      {
         path: "contact",
         element: <ContactLayout />,
         children: [
@@ -30,23 +66,79 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <h1>customer details</h1>,
+                element: <CustomerDetailsPage />,
               },
               {
                 path: "meeting",
-                element: <h1>meeting details</h1>,
+                element: <MeetingLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <MeetingPage />,
+                  },
+                  {
+                    path: "meetings-details/:meetingId",
+                    element: <MeetingsDetails />,
+                  },
+                  {
+                    path: "create-meeting",
+                    element: <CreateMeetingPage />,
+                  },
+                ],
               },
               {
                 path: "task",
-                element: <h1>task details</h1>,
+                element: <TaskPageLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <TaskPage />,
+                  },
+                  {
+                    path: "task-details/:taskId",
+                    element: <TaskDetails />,
+                  },
+                  {
+                    path: "create-task",
+                    element: <CreateTask />,
+                  },
+                ],
               },
               {
                 path: "notes",
-                element: <h1>notes details</h1>,
+                element: <NotesDetailsLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <NotesDetailsPage />,
+                  },
+                  {
+                    path: "notes-details/:notesId",
+                    element: <NotesDetails />,
+                  },
+                  {
+                    path: "create-notes",
+                    element: <CreateNotesPage />,
+                  },
+                ],
               },
               {
                 path: "tasting",
-                element: <h1>tasting details</h1>,
+                element: <TastingDetailsPageLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <TastingDetailsPage />,
+                  },
+                  {
+                    path: "tasting-details/:tastingId",
+                    element: <TastingDetails />,
+                  },
+                  {
+                    path: "create-tasting",
+                    element: <CreateTesting />,
+                  },
+                ],
               },
               {
                 path: "edit",
@@ -65,6 +157,24 @@ export const router = createBrowserRouter([
           {
             path: ":id/sales",
             element: <SalesPage />,
+          },
+        ],
+      },
+      {
+        path: "notes",
+        element: <NotesPageLayout />,
+        children: [
+          {
+            index: true,
+            element: <NotesPage />,
+          },
+          {
+            path: "add-text-note",
+            element: <AddTextNote />,
+          },
+          {
+            path: "add-voice-note",
+            element: <AddVoiceNote />,
           },
         ],
       },

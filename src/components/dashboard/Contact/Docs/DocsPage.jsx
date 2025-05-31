@@ -1,18 +1,100 @@
+import DemoImage from "@/assets/svg/DemoImage";
+import PdfIcon from "@/assets/svg/PdfIcon";
+import { Card } from "@/components/ui/card";
 import images from "@/constants/images";
 import React from "react";
 
+const docData = [
+  {
+    id: 1,
+    fileName: "Contract agreement.png",
+    fileType: "image/png",
+    uploadDate: "April 8, 2025",
+  },
+  {
+    id: 2,
+    fileName: "Contract agreement.pdf",
+    fileType: "application/pdf",
+    uploadDate: "April 8, 2025",
+  },
+];
+
 const DocsPage = () => {
+  const hasDocData = docData.length > 0;
+
+  let content;
+
+  switch (hasDocData) {
+    case true:
+      content = <DocsItem />;
+      break;
+    case false:
+      content = <NoDataPage />;
+      break;
+  }
+
   return (
     <section>
-      <div className="container relative">
-        <NoDataPage />
-      </div>
+      <div className="container relative">{content}</div>
       <LinkButton />
     </section>
   );
 };
 
 export default DocsPage;
+
+function DocsItem() {
+  const docTypes = {
+    "application/pdf": <PdfIcon />,
+    "image/png": <DemoImage />,
+  };
+  return (
+    <div>
+      <div className="space-y-6">
+        {docData.map((doc, index) => (
+          <Card
+            className="shadow-none p-3.5"
+            key={doc.id}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div className="flex gap-5" key={doc.id}>
+              <div>{docTypes[doc.fileType]}</div>
+              <div className="flex flex-col justify-between">
+                <h4 className="text-foreground font-medium text-base">
+                  {doc.fileName}
+                </h4>
+                <p className="text-text-paragraph text-xs mb-1.5 mt-1">
+                  {doc.uploadDate}
+                </p>
+                <div className="space-x-16">
+                  <button
+                    type="button"
+                    className="text-primary font-medium cursor-pointer"
+                  >
+                    View
+                  </button>
+                  <button
+                    type="button"
+                    className="text-primary font-medium cursor-pointer"
+                  >
+                    Download
+                  </button>
+                  <button
+                    type="button"
+                    className="text-primary font-medium cursor-pointer"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function NoDataPage() {
   return (
