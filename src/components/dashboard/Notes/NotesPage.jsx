@@ -86,7 +86,7 @@ export function NotesPage() {
 
   return (
     <section>
-      <div className="container mb-20">
+      <div className="container mx-auto mb-20 px-5 md:px-0">
         {content}
         <CreateButton />
       </div>
@@ -155,27 +155,28 @@ function CreateButton() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <div className="absolute bottom-20 right-20">
-      <div className="absolute bottom-32 right-24">
+    <div className="fixed lg:absolute bottom-5 lg:bottom-20 right-5 lg:right-20">
+      <div className="absolute bottom-20 lg:bottom-32 right-0 lg:right-24">
         {isDropdownOpen && <DropdownButton />}
       </div>
       <div
-        className="bg-secondary absolute bottom-0 right-0 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4 w-fit"
-        data-aos="zoom-in"
-        data-aos-delay="700"
+        className="bg-secondary absolute bottom-0 right-0 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-2.5 lg:p-4 w-fit"
+        // data-aos="zoom-in"
+        // data-aos-delay="700"
       >
         <button
-          className={`bg-primary p-5 rounded-full inline-block transition-transform duration-300 ${
+          className={`bg-primary p-2.5 lg:p-5 rounded-full inline-block transition-transform duration-300 ${
             isDropdownOpen ? "rotate-45 scale-95" : ""
           }`}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
+            // width="36"
+            // height="36"
             viewBox="0 0 36 36"
             fill="none"
+            className="w-[15px] xl:w-[32px] h-[15px] xl:h-[30px]"
           >
             <path
               d="M7.60568 18.0002H28.3936"
@@ -215,7 +216,7 @@ function DropdownButton() {
               replace: true,
             })
           }
-          className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer"
+          className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer bg-white"
         >
           <DocsIcon className="w-7 h-7 stroke-gray-700 group-hover:stroke-white transition-colors duration-500" />
         </div>
@@ -243,7 +244,7 @@ function DropdownButton() {
               replace: true,
             })
           }
-          className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer"
+          className="border group-hover:border-transparent group-hover:bg-primary rounded-full p-2 transition-colors duration-500 cursor-pointer bg-white"
         >
           <VoiceNotes className="w-7 h-7 stroke-gray-700 group-hover:stroke-white transition-colors duration-500" />
         </div>
