@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -8,6 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Card } from "@/components/ui/card";
+import { Eye, EyeClosed } from "lucide-react";
 
 const ReusableInputField = ({
   name,
@@ -25,6 +26,9 @@ const ReusableInputField = ({
   labelClassName = "",
   ...props
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const isPassword = type === "password";
+
   if (control) {
     return (
       <FormField
@@ -43,14 +47,34 @@ const ReusableInputField = ({
             )}
             <FormControl>
               <Card className="p-0 gap-0 border-none rounded-sm bg-[#FAFAFA]">
-                <Input
-                  {...field}
-                  type={type}
-                  placeholder={placeholder}
-                  disabled={disabled}
-                  className={`px-5 py-8 border-none bg-transparent text-foreground ${inputClassName}`}
-                  {...props}
-                />
+                {isPassword ? (
+                  <div className="relative">
+                    <Input
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                      placeholder={placeholder}
+                      disabled={disabled}
+                      className={`px-5 py-8 border-none bg-transparent text-foreground ${inputClassName}`}
+                      {...props}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-[35%] text-muted-foreground"
+                    >
+                      {showPassword ? <Eye /> : <EyeClosed />}
+                    </button>
+                  </div>
+                ) : (
+                  <Input
+                    {...field}
+                    type={type}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                    className={`px-5 py-8 border-none bg-transparent text-foreground ${inputClassName}`}
+                    {...props}
+                  />
+                )}
               </Card>
             </FormControl>
             <FormMessage />
@@ -70,16 +94,38 @@ const ReusableInputField = ({
           {label}
         </label>
       )}
-      <Input
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        disabled={disabled}
-        placeholder={placeholder}
-        {...props}
-        className={`px-5 py-6 border border-[#D6D6D6] bg-transparent rounded-lg text-foreground ${inputClassName}`}
-      />
+      {isPassword ? (
+        <div className="relative">
+          <Input
+            id={name}
+            name={name}
+            type={showPassword ? "text" : "password"}
+            value={value}
+            disabled={disabled}
+            placeholder={placeholder}
+            {...props}
+            className={`px-5 py-6 border border-[#D6D6D6] bg-transparent rounded-lg text-foreground ${inputClassName}`}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-[35%] text-muted-foreground"
+          >
+            {showPassword ? <Eye /> : <EyeClosed />}
+          </button>
+        </div>
+      ) : (
+        <Input
+          id={name}
+          name={name}
+          type={type}
+          value={value}
+          disabled={disabled}
+          placeholder={placeholder}
+          {...props}
+          className={`px-5 py-6 border border-[#D6D6D6] bg-transparent rounded-lg text-foreground ${inputClassName}`}
+        />
+      )}
     </div>
   );
 };
