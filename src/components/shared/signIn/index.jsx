@@ -1,22 +1,16 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ReusableInputField from "../InputField/ReusableInputField";
 import images from "@/constants/images";
 import Google from "@/assets/svg/Google";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import ReusableCheckboxField from "../InputField/ReusableCheckboxField";
-import { useSignUp } from "@/hooks/api/auth.hook";
+import { useSignIn } from "@/hooks/api/auth.hook";
 import { Link } from "react-router";
-// import { FcGoogle } from "react-icons/fc"; // Uncomment if using react-icons
 
-export default function SignUp() {
-  const { form, mutate, isPending } = useSignUp();
+const SignIn = () => {
+  const { form, mutate, isPending } = useSignIn();
 
   const onSubmit = (values) => {
     // handle sign up
@@ -58,16 +52,8 @@ export default function SignUp() {
                   className="space-y-10"
                 >
                   <h3 className="text-2xl font-semibold mb-4 text-center md:text-left">
-                    Sign Up
+                    Sign In
                   </h3>
-                  <div>
-                    <ReusableInputField
-                      name="name"
-                      placeholder="Enter Your Name"
-                      control={form.control}
-                      type="text"
-                    />
-                  </div>
                   <div>
                     <ReusableInputField
                       name="email"
@@ -85,18 +71,10 @@ export default function SignUp() {
                     />
                   </div>
                   <div>
-                    <ReusableInputField
-                      name="password_confirmation"
-                      placeholder="Confirm Your Password"
-                      control={form.control}
-                      type="password"
-                    />
-                  </div>
-                  <div>
                     <ReusableCheckboxField
-                      name="agree"
+                      name="remember-me"
                       control={form.control}
-                      label="Accept terms and conditions"
+                      label="Remember Me"
                     />
                   </div>
                   <Button
@@ -104,13 +82,13 @@ export default function SignUp() {
                     type="submit"
                     className="bg-[#615EF0] text-white h-11 rounded-md text-base font-medium px-10 w-full"
                   >
-                    {isPending ? "Signing Up..." : "Sign Up"}{" "}
+                    {isPending ? "Signing In..." : "Sign In"}{" "}
                     <span className="ml-2">&rarr;</span>
                   </Button>
                 </form>
               </Form>
               <div className="text-center text-xs text-gray-500 mt-4">
-                Already have an account? <Link className="hover:underline" to="/sign-in">Sign In</Link>
+                Don't have an account? <Link to="/sign-up">Sign Up</Link>
               </div>
               <Button
                 variant="outline"
@@ -127,4 +105,6 @@ export default function SignUp() {
       </div>
     </div>
   );
-}
+};
+
+export default SignIn;

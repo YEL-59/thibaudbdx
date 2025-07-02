@@ -14,3 +14,16 @@ export const signUpSchema = z
     message: "Password do not match",
     path: ["password_confirmation"],
   });
+
+export const signInSchema = z.object({
+  email: z.string().email("Invalid email"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+export const otpSchema = z.object({
+  email: z.string().email("Invalid email"),
+  otp: z.string().min(4).max(4),
+});
+export const resendOtpSchema = z.object({
+  email: z.string().email("Invalid email"),
+});

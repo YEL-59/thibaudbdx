@@ -34,7 +34,9 @@ import {
   NotesPage,
   NotesPageLayout,
 } from "@/components/dashboard/Notes/NotesPage";
+import SignIn from "@/components/shared/signIn";
 import SignUp from "@/components/shared/signUp";
+import VerifyOTP from "@/components/shared/verifyOTP";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
@@ -183,10 +185,14 @@ export const router = createBrowserRouter([
   },
   {
     path: "sign-in",
-    element: <h1>sign in`</h1>,
+    element: <SignIn />,
   },
   {
     path: "sign-up",
     element: <SignUp />,
+  },
+  {
+    path: "otp-verify",
+    element: <VerifyOTP />,
   },
 ]);
