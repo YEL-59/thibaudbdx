@@ -34,6 +34,7 @@ import {
   NotesPage,
   NotesPageLayout,
 } from "@/components/dashboard/Notes/NotesPage";
+import ForgotPassword from "@/components/shared/forgotPassword";
 import SignIn from "@/components/shared/signIn";
 import SignUp from "@/components/shared/signUp";
 import VerifyOTP from "@/components/shared/verifyOTP";
@@ -194,5 +195,9 @@ export const router = createBrowserRouter([
   {
     path: "otp-verify",
     element: <VerifyOTP />,
+  },
+  {
+    path: "forgot-password",
+    element: <ForgotPassword />,
   },
 ]);

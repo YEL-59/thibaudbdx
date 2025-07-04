@@ -27,3 +27,7 @@ export const otpSchema = z.object({
 export const resendOtpSchema = z.object({
   email: z.string().email("Invalid email"),
 });
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().email("Invalid email"),
+});

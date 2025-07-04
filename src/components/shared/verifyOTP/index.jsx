@@ -11,6 +11,9 @@ const VerifyOTP = () => {
   const { form, mutate, isPending } = useOTPSubmit();
   const { mutate: resendMutate, isPending: resendIsPending } = useResendOTP();
 
+  // demo code for otp count down
+  const [counter, setCounter] = useState(2);
+
   const onSubmit = (values) => {
     // handle sign up
     mutate(values);
@@ -18,11 +21,12 @@ const VerifyOTP = () => {
 
   //   Resend OTP
   const handleResendOTP = () => {
-    resendMutate();
+    resendMutate(undefined, {
+      onSuccess: () => {
+        setCounter(30);
+      },
+    });
   };
-
-  // demo code for otp count down
-  const [counter, setCounter] = useState(2);
 
   useEffect(() => {
     if (counter === 0) return;

@@ -1,5 +1,6 @@
-import { axiosPrivate } from "@/lib/axios.config";
+import { axiosPrivate, axiosPublic } from "@/lib/axios.config";
 import {
+  forgotPasswordSchema,
   otpSchema,
   resendOtpSchema,
   signInSchema,
@@ -11,6 +12,18 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import useQueryParam from "../useQueryParam";
+
+// const signUp = "/auth/register";
+// const signIn = "/auth/login";
+// const verifyOTP = "/auth/verify-otp";
+// const resendOTP = "/auth/resend-otp";
+// const forgotPassword = "/auth/forgot-password";
+
+const signUp = "/posts";
+const signIn = "/posts";
+const verifyOTP = "/posts";
+const resendOTP = "/posts";
+const forgotPassword = "/posts";
 
 // Sign Up
 export const useSignUp = () => {
@@ -28,7 +41,7 @@ export const useSignUp = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formData) => {
-      const { data } = await axiosPrivate.post("/auth/register", formData, {
+      const { data } = await axiosPublic.post(signUp, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -36,6 +49,11 @@ export const useSignUp = () => {
 
       return data;
     },
+    // Demo
+    onMutate: (variables) => {
+      navigate(`/otp-verify?email=${variables?.email}`);
+    },
+    // end
     onSuccess: (data) => {
       const token = data?.data?.token;
       localStorage.setItem("token", token);
@@ -43,7 +61,9 @@ export const useSignUp = () => {
       localStorage.setItem("usersignup", JSON.stringify(user));
       form.reset();
       toast.success(data?.message || "Success!");
-      navigate(`/otp-verify?email=${data?.data?.email}`);
+      // Real
+      // navigate(`/otp-verify?email=${data?.data?.email}`);
+      // end
     },
     onError: (error) => {
       console.log("error", error);
@@ -71,7 +91,7 @@ export const useSignIn = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formData) => {
-      const { data } = await axiosPrivate.post("/auth/login", formData, {
+      const { data } = await axiosPrivate.post(signIn, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -88,7 +108,7 @@ export const useSignIn = () => {
       localStorage.setItem("user", JSON.stringify(user));
       form.reset();
       toast.success(data?.message || "Success!");
-      //   navigate("/sign-in");
+      navigate("/");
     },
     onError: (error) => {
       console.log("error", error);
@@ -118,20 +138,25 @@ export const useOTPSubmit = () => {
   });
 
   const { mutate, isPending } = useMutation({
-    mutationFn: async (formData) => {
-      const { data } = await axiosPrivate.post("/auth/verify-email", formData, {
+    mutationFn: async (dataInfo) => {
+      const formData = dataInfo?.values;
+
+      const { data } = await axiosPrivate.post(verifyOTP, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
-      return data;
+      return { data, navigatesIsHere: dataInfo?.navigatesIsHere };
     },
     onSuccess: (data) => {
-      console.log("data", data);
       form.reset();
-      toast.success(data?.message || "Success!");
-      navigate("/");
+      toast.success(data?.data?.message || "Success!");
+      console.log("data", data);
+
+      if (data?.navigatesIsHere) {
+        navigate("/");
+      }
     },
     onError: (error) => {
       console.log("error", error);
@@ -147,6 +172,7 @@ export const useOTPSubmit = () => {
   return { form, mutate, isPending };
 };
 
+// Resend OTP
 export const useResendOTP = () => {
   const user_email = useQueryParam("email");
 
@@ -164,7 +190,7 @@ export const useResendOTP = () => {
         email: user_email,
       };
 
-      const { data } = await axiosPrivate.post("/auth/resend-otp", formData, {
+      const { data } = await axiosPrivate.post(resendOTP, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -175,7 +201,48 @@ export const useResendOTP = () => {
     onSuccess: (data) => {
       console.log("data", data);
       toast.success(data?.message || "Success!");
-      navigate(`/sign-in`);
+    },
+    onError: (error) => {
+      console.log("error", error);
+
+      const message = error?.response?.data?.message || "Failed to create user";
+      if (message.includes("email")) {
+        form.setError("email", { message });
+      } else {
+        toast.error(message);
+      }
+    },
+  });
+  return { form, mutate, isPending };
+};
+
+// Forgot Password Email send
+export const useForgotPassword = () => {
+  const navigate = useNavigate();
+  const form = useForm({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (formData) => {
+      const { data } = await axiosPrivate.post(forgotPassword, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return data;
+    },
+    onMutate: async (variables) => {
+      navigate(`/forgot-password?email=${variables?.email}`);
+    },
+    onSuccess: (data) => {
+      console.log("data", data);
+      toast.success(data?.message || "Success!");
+      form.reset();
     },
     onError: (error) => {
       console.log("error", error);

@@ -70,12 +70,15 @@ const SignIn = () => {
                       type="password"
                     />
                   </div>
-                  <div>
+                  <div className="flex items-center justify-between">
                     <ReusableCheckboxField
                       name="remember-me"
                       control={form.control}
                       label="Remember Me"
                     />
+                    <div className="text-center text-xs text-gray-500">
+                      <Link to="/forgot-password" className="hover:underline">Forgot Password</Link>
+                    </div>
                   </div>
                   <Button
                     disabled={isPending}
