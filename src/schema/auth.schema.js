@@ -31,3 +31,13 @@ export const resendOtpSchema = z.object({
 export const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email"),
 });
+
+export const createNewPasswordSchema = z
+  .object({
+    password_confirmation: z.string().min(6, "Confirm password is required"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+  })
+  .refine((data) => data.password === data.password_confirmation, {
+    message: "Password do not match",
+    path: ["password_confirmation"],
+  });

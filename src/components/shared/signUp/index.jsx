@@ -110,7 +110,10 @@ export default function SignUp() {
                 </form>
               </Form>
               <div className="text-center text-xs text-gray-500 mt-4">
-                Already have an account? <Link className="hover:underline" to="/sign-in">Sign In</Link>
+                Already have an account?{" "}
+                <Link className="hover:underline" to="/sign-in">
+                  Sign In
+                </Link>
               </div>
               <Button
                 variant="outline"

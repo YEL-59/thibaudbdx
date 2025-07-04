@@ -1,5 +1,6 @@
 import { axiosPrivate, axiosPublic } from "@/lib/axios.config";
 import {
+  createNewPasswordSchema,
   forgotPasswordSchema,
   otpSchema,
   resendOtpSchema,
@@ -18,12 +19,14 @@ import useQueryParam from "../useQueryParam";
 // const verifyOTP = "/auth/verify-otp";
 // const resendOTP = "/auth/resend-otp";
 // const forgotPassword = "/auth/forgot-password";
+// const createNewPassword = "/auth/forget-password";
 
 const signUp = "/posts";
 const signIn = "/posts";
 const verifyOTP = "/posts";
 const resendOTP = "/posts";
 const forgotPassword = "/posts";
+const createNewPassword = "/posts";
 
 // Sign Up
 export const useSignUp = () => {
@@ -243,6 +246,46 @@ export const useForgotPassword = () => {
       console.log("data", data);
       toast.success(data?.message || "Success!");
       form.reset();
+    },
+    onError: (error) => {
+      console.log("error", error);
+
+      const message = error?.response?.data?.message || "Failed to create user";
+      if (message.includes("email")) {
+        form.setError("email", { message });
+      } else {
+        toast.error(message);
+      }
+    },
+  });
+  return { form, mutate, isPending };
+};
+// New Password
+export const useCreateNewPassword = () => {
+  const navigate = useNavigate();
+  const form = useForm({
+    resolver: zodResolver(createNewPasswordSchema),
+    defaultValues: {
+      password_confirmation: "",
+      password: "",
+    },
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (formData) => {
+      const { data } = await axiosPrivate.post(createNewPassword, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return data;
+    },
+    onSuccess: (data) => {
+      console.log("data", data);
+      toast.success(data?.message || "Success!");
+      form.reset();
+      navigate("/sign-in");
     },
     onError: (error) => {
       console.log("error", error);
