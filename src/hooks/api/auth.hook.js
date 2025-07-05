@@ -103,8 +103,6 @@ export const useSignIn = () => {
       return data;
     },
     onSuccess: (data) => {
-      console.log("data", data);
-
       const token = data?.token;
       localStorage.setItem("token", token);
       const user = data?.data;
@@ -114,8 +112,6 @@ export const useSignIn = () => {
       navigate("/");
     },
     onError: (error) => {
-      console.log("error", error);
-
       const message = error?.response?.data?.message || "Failed to create user";
       if (message.includes("email")) {
         form.setError("email", { message });
