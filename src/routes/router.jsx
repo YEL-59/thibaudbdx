@@ -34,6 +34,7 @@ import {
   NotesPage,
   NotesPageLayout,
 } from "@/components/dashboard/Notes/NotesPage";
+import { TastingPage } from "@/components/dashboard/Tasting/TastingPage";
 import ForgotPassword from "@/components/shared/forgotPassword";
 import SignIn from "@/components/shared/signIn";
 import SignUp from "@/components/shared/signUp";
@@ -41,7 +42,7 @@ import VerifyOTP from "@/components/shared/verifyOTP";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 
 export const router = createBrowserRouter([
   {
@@ -179,6 +180,16 @@ export const router = createBrowserRouter([
           {
             path: "add-voice-note",
             element: <AddVoiceNote />,
+          },
+        ],
+      },
+      {
+        path: "tasting",
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <TastingPage />,
           },
         ],
       },

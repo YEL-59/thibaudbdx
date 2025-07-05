@@ -14,19 +14,19 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import useQueryParam from "../useQueryParam";
 
-// const signUp = "/auth/register";
-// const signIn = "/auth/login";
-// const verifyOTP = "/auth/verify-otp";
-// const resendOTP = "/auth/resend-otp";
-// const forgotPassword = "/auth/forgot-password";
-// const createNewPassword = "/auth/forget-password";
+const signUp = "/auth/register";
+const signIn = "/auth/login";
+const verifyOTP = "/auth/verify-otp";
+const resendOTP = "/auth/resend-otp";
+const forgotPassword = "/auth/forgot-password";
+const createNewPassword = "/auth/forget-password";
 
-const signUp = "/posts";
-const signIn = "/posts";
-const verifyOTP = "/posts";
-const resendOTP = "/posts";
-const forgotPassword = "/posts";
-const createNewPassword = "/posts";
+// const signUp = "/posts";
+// const signIn = "/posts";
+// const verifyOTP = "/posts";
+// const resendOTP = "/posts";
+// const forgotPassword = "/posts";
+// const createNewPassword = "/posts";
 
 // Sign Up
 export const useSignUp = () => {
@@ -53,9 +53,9 @@ export const useSignUp = () => {
       return data;
     },
     // Demo
-    onMutate: (variables) => {
-      navigate(`/otp-verify?email=${variables?.email}`);
-    },
+    // onMutate: (variables) => {
+    //   navigate(`/otp-verify?email=${variables?.email}`);
+    // },
     // end
     onSuccess: (data) => {
       const token = data?.data?.token;
@@ -65,7 +65,7 @@ export const useSignUp = () => {
       form.reset();
       toast.success(data?.message || "Success!");
       // Real
-      // navigate(`/otp-verify?email=${data?.data?.email}`);
+      navigate(`/otp-verify?email=${data?.data?.email}`);
       // end
     },
     onError: (error) => {
