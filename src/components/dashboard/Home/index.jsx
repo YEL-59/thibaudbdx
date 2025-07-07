@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useGetUpcomingMeetings } from "@/hooks/api/home.hook";
 
 const dashboardItems = [
   {
@@ -43,21 +44,45 @@ const dashboardItems = [
     time: "5:00 PM",
   },
 ];
+const dashboardItems2 = [
+  {
+    id: 1,
+    type: "Meeting",
+    title: "Meeting with John",
+    date: "7 Jun 2025",
+    time: "10:00 AM",
+  },
+  {
+    id: 2,
+    type: "Meeting",
+    title: "Meeting with Sarah",
+    date: "7 Jun 2025",
+    time: "11:00 AM",
+  },
+];
+const dashboardItems3 = [
+  {
+    id: 1,
+    type: "Meeting",
+    title: "Meeting with John",
+    date: "7 Jun 2025",
+    time: "10:00 AM",
+  },
+];
 
 export default function HomeDashboard() {
-  const [selectedType, setSelectedType] = useState("Meeting");
+  const { getUpcomingMeetings, isLoading } = useGetUpcomingMeetings();
+
   const [steps, setSteps] = useState(1);
 
-  const filteredItems = dashboardItems.filter(
-    (item) => item.type === selectedType
-  );
+  console.log("getUpcomingMeetings", getUpcomingMeetings);
 
   const content = (steps) => {
     switch (steps) {
       case 1:
         return (
           <>
-            {filteredItems.map((item, idx) => (
+            {getUpcomingMeetings?.map((item, idx) => (
               <ListCard key={item.id} item={item} idx={idx} />
             ))}
           </>
@@ -65,7 +90,7 @@ export default function HomeDashboard() {
       case 2:
         return (
           <>
-            {filteredItems.map((item, idx) => (
+            {dashboardItems2.map((item, idx) => (
               <ListCard key={item.id} item={item} idx={idx} />
             ))}
           </>
@@ -73,7 +98,7 @@ export default function HomeDashboard() {
       case 3:
         return (
           <>
-            {filteredItems.map((item, idx) => (
+            {dashboardItems3.map((item, idx) => (
               <ListCard key={item.id} item={item} idx={idx} />
             ))}
           </>
@@ -91,21 +116,33 @@ export default function HomeDashboard() {
         <section className="space-y-4" data-aos="fade-up">
           {/* Tabs */}
           <div className="flex flex-wrap gap-2 font-['poppins']">
-            {["Meeting", "Task", "Tasting"].map((type, idx) => (
-              <Button
-                key={type}
-                variant="outline"
-                className={`${
-                  steps === idx + 1
-                    ? "!bg-[#615EF0] !text-white"
-                    : "text-[#615EF0]"
-                }`}
-                onClick={() => setSteps(idx + 1)}
-              >
-                Upcoming {type}s (
-                {dashboardItems.filter((item) => item.type === type).length})
-              </Button>
-            ))}
+            <Button
+              variant="outline"
+              className={`${
+                steps === 1 ? "!bg-[#615EF0] !text-white" : "text-[#615EF0]"
+              }`}
+              onClick={() => setSteps(1)}
+            >
+              Upcoming Meetings ({getUpcomingMeetings?.length})
+            </Button>
+            <Button
+              variant="outline"
+              className={`${
+                steps === 2 ? "!bg-[#615EF0] !text-white" : "text-[#615EF0]"
+              }`}
+              onClick={() => setSteps(2)}
+            >
+              Upcoming Task ({dashboardItems2?.length})
+            </Button>
+            <Button
+              variant="outline"
+              className={`${
+                steps === 3 ? "!bg-[#615EF0] !text-white" : "text-[#615EF0]"
+              }`}
+              onClick={() => setSteps(3)}
+            >
+              Upcoming Tasting ({dashboardItems3?.length})
+            </Button>
           </div>
 
           {/* Cards */}
