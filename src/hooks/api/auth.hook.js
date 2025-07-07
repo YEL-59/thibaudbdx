@@ -55,10 +55,10 @@ export const useSignUp = () => {
       return data;
     },
     onSuccess: (data) => {
-      const token = data?.data?.token;
+      const token = data?.token;
       localStorage.setItem("token", token);
       const user = data?.data;
-      localStorage.setItem("usersignup", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
       form.reset();
       toast.success(data?.message || "Success!");
       // Real
@@ -303,7 +303,7 @@ export const useCreateNewPassword = () => {
     defaultValues: {
       password_confirmation: "",
       password: "",
-      email: email
+      email: email,
     },
   });
 

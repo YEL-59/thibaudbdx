@@ -43,11 +43,17 @@ import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
 import { createBrowserRouter, Outlet } from "react-router";
+import PrivateRoute from "./private-route";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
