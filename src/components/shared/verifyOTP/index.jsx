@@ -3,12 +3,12 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import images from "@/constants/images";
-import { useOTPSubmit, useResendOTP } from "@/hooks/api/auth.hook";
+import { useOTPSubmit, useResendOTP, useVerifyOTP } from "@/hooks/api/auth.hook";
 import useQueryParam from "@/hooks/useQueryParam";
 import ReusableOTPInputField from "../InputField/ReusableOTPInputField";
 
 const VerifyOTP = () => {
-  const { form, mutate, isPending } = useOTPSubmit();
+  const { form, mutate, isPending } = useVerifyOTP();
   const { mutate: resendMutate, isPending: resendIsPending } = useResendOTP();
 
   // demo code for otp count down

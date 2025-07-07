@@ -34,6 +34,7 @@ export const forgotPasswordSchema = z.object({
 
 export const createNewPasswordSchema = z
   .object({
+    email: z.string().email("Invalid email"),
     password_confirmation: z.string().min(6, "Confirm password is required"),
     password: z.string().min(6, "Password must be at least 6 characters"),
   })

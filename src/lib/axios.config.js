@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  // baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}`,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
+  // baseURL: `${import.meta.env.VITE_API_BASE_URL}`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -11,8 +11,8 @@ const axiosPublic = axios.create({
 });
 
 const axiosPrivate = axios.create({
-  // baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}`,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
+  // baseURL: `${import.meta.env.VITE_API_BASE_URL}`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

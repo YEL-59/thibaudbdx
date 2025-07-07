@@ -16,10 +16,11 @@ import useQueryParam from "../useQueryParam";
 
 const signUp = "/auth/register";
 const signIn = "/auth/login";
+const verifyEmail = "/auth/verify-email";
 const verifyOTP = "/auth/verify-otp";
 const resendOTP = "/auth/resend-otp";
-const forgotPassword = "/auth/forgot-password";
-const createNewPassword = "/auth/forget-password";
+const forgotPassword = "/auth/forget-password";
+const createNewPassword = "/auth/reset-password";
 
 // const signUp = "/posts";
 // const signIn = "/posts";
@@ -48,15 +49,11 @@ export const useSignUp = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        withCredentials: true,
       });
 
       return data;
     },
-    // Demo
-    // onMutate: (variables) => {
-    //   navigate(`/otp-verify?email=${variables?.email}`);
-    // },
-    // end
     onSuccess: (data) => {
       const token = data?.data?.token;
       localStorage.setItem("token", token);
@@ -112,6 +109,47 @@ export const useSignIn = () => {
       navigate("/");
     },
     onError: (error) => {
+      const message = error?.response?.data?.message || "Failed to create user";
+      if (message.includes("email")) {
+        form.setError("email", { message });
+      } else {
+        toast.error(message);
+      }
+    },
+  });
+  return { form, mutate, isPending };
+};
+
+// Verify Email
+export const useVerifyOTP = () => {
+  const navigate = useNavigate();
+  const user_email = useQueryParam("email");
+  const form = useForm({
+    resolver: zodResolver(otpSchema),
+    defaultValues: {
+      email: user_email,
+      otp: "",
+    },
+  });
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (formData) => {
+      const { data } = await axiosPrivate.post(verifyEmail, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return { data };
+    },
+    onSuccess: (data) => {
+      form.reset();
+      toast.success(data?.message || "Success!");
+      // console.log("data", data);
+      navigate("/sign-in");
+    },
+    onError: (error) => {
+      console.log("error", error);
+
       const message = error?.response?.data?.message || "Failed to create user";
       if (message.includes("email")) {
         form.setError("email", { message });
@@ -259,11 +297,13 @@ export const useForgotPassword = () => {
 // New Password
 export const useCreateNewPassword = () => {
   const navigate = useNavigate();
+  const email = useQueryParam("email");
   const form = useForm({
     resolver: zodResolver(createNewPasswordSchema),
     defaultValues: {
       password_confirmation: "",
       password: "",
+      email: email
     },
   });
 
