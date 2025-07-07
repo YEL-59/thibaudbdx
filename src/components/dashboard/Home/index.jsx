@@ -2,10 +2,11 @@ import Rightarrow from "@/assets/svg/rightarrow";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { useEffect, useState } from "react";
-import AOS from "aos";
+import { useState } from "react";
 import "aos/dist/aos.css";
 import { useGetUpcomingMeetings } from "@/hooks/api/home.hook";
+import { upcoming_meeting, upcoming_tasks } from "@/data/upcomming_data";
+import formatOptionalDateTime from "@/lib/timeformat";
 
 const dashboardItems = [
   {
@@ -82,16 +83,20 @@ export default function HomeDashboard() {
       case 1:
         return (
           <>
-            {getUpcomingMeetings?.map((item, idx) => (
-              <ListCard key={item.id} item={item} idx={idx} />
+            {upcoming_meeting?.map((item, idx) => (
+              <div data-aos="fade-up" data-aos-delay={`${idx * 100}`}>
+                <ListCard key={item.id} item={item} idx={idx} />
+              </div>
             ))}
           </>
         );
       case 2:
         return (
           <>
-            {dashboardItems2.map((item, idx) => (
-              <ListCard key={item.id} item={item} idx={idx} />
+            {upcoming_tasks?.map((item, idx) => (
+              <div data-aos="fade-up" data-aos-delay={`${idx * 100}`}>
+                <ListCard key={item.id} item={item} idx={idx} />
+              </div>
             ))}
           </>
         );
@@ -123,7 +128,7 @@ export default function HomeDashboard() {
               }`}
               onClick={() => setSteps(1)}
             >
-              Upcoming Meetings ({getUpcomingMeetings?.length})
+              Upcoming Meetings ({upcoming_meeting?.length})
             </Button>
             <Button
               variant="outline"
@@ -132,7 +137,7 @@ export default function HomeDashboard() {
               }`}
               onClick={() => setSteps(2)}
             >
-              Upcoming Task ({dashboardItems2?.length})
+              Upcoming Task ({upcoming_tasks?.length})
             </Button>
             <Button
               variant="outline"
@@ -160,19 +165,21 @@ export default function HomeDashboard() {
 }
 
 /* Cards */
-function ListCard({ item, idx }) {
+function ListCard({ item }) {
   return (
-    <Card
-      key={item.id}
-      className="border border-gray-200"
-      data-aos="fade-up"
-      data-aos-delay={`${idx * 100}`}
-    >
+    <Card key={item.id} className="border border-gray-200">
       <CardContent className="p-0 px-5 flex justify-between items-center">
         <div className="border-l-4 border-indigo-500">
-          <p className="font-semibold text-sm ml-2">{item.title}</p>
+          <p className="font-semibold text-sm ml-2">{item.name}</p>
           <p className="text-xs text-gray-500 ml-2">
-            {item.date} — {item.time}
+            {item.created_at &&
+              `${formatOptionalDateTime({ isoDate: item.created_at })?.date} —`}
+            {item.date &&
+              `${formatOptionalDateTime({ isoDate: item.date })?.date} ${
+                item.created_at ? `` : `—`
+              }`}
+            {item.time &&
+              `${formatOptionalDateTime({ timeStr: item.time })?.time}`}
           </p>
         </div>
         <Button variant="ghost" size="icon">
