@@ -12,6 +12,8 @@ import { CalendarIcon } from "lucide-react";
 import { useLocation, useNavigate } from "react-router";
 
 function Navbar({ sidebarOpen, setSidebarOpen }) {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const location = useLocation();
   const hasNested = useHasNestedRoute();
   const navigate = useNavigate();
@@ -119,13 +121,17 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
         <div className="hidden md:flex items-center gap-4">
           <Avatar className="h-12 w-12">
             <AvatarImage src="https://i.pravatar.cc/40" alt="Ivay Jack" />
-            <AvatarFallback>IJ</AvatarFallback>
+            <AvatarFallback className={"uppercase"}>
+              {user?.name?.slice(0, 1)}
+            </AvatarFallback>
           </Avatar>
           <div className=" flex-col">
-            <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px]">
-              Ivay Jack
+            <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px] capitalize">
+              {user?.name ?? "Your Name"}
             </h3>
-            <p className="text-base leading-[164%]">Ivayjack@outlook.com</p>
+            <p className="text-base leading-[164%]">
+              {user?.email ?? "example@gmail.com"}
+            </p>
           </div>
         </div>
         <div className="md:hidden flex">

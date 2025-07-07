@@ -16,6 +16,7 @@ import Support from "@/assets/svg/support";
 import Setting from "@/assets/svg/setting";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const user = JSON.parse(localStorage.getItem("user"));
   const sidebarRef = useRef(null);
   const location = useLocation();
 
@@ -41,7 +42,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { label: "Contact", icon: Contact, path: "/contact" },
     { label: "Notes", icon: Note, path: "/notes" },
     { label: "Tasting", icon: Tasting, path: "/tasting" },
-    { label: "Docs", icon: Docs, path: "/notification" }, 
+    { label: "Docs", icon: Docs, path: "/notification" },
     { label: "Map", icon: Map, path: "/setting" },
     { label: "Tags", icon: Tags, path: "/tags" },
     { label: "Import/Export", icon: Importex, path: "/importexport" },
@@ -114,8 +115,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             className="w-10 h-10 rounded-full object-cover"
           />
           <div className="flex flex-col">
-            <p className="text-sm font-semibold text-gray-800">
-              Dila Adiha Sani
+            <p className="text-sm font-semibold text-gray-800 capitalize">
+              {user?.name ?? "Your Name"}
             </p>
             <p className="text-xs text-gray-500">Sales Person</p>
           </div>
