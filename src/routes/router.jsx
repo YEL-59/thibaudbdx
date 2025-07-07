@@ -205,10 +205,10 @@ export const router = createBrowserRouter([
     path: "sign-in",
     element: <SignIn />,
   },
-  // {
-  //   path: "sign-up",
-  //   element: <SignUp />,
-  // },
+  {
+    path: "sign-up",
+    element: <SignUp />,
+  },
   {
     path: "otp-verify",
     element: <VerifyOTP />,
