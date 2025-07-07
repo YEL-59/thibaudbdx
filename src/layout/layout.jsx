@@ -19,7 +19,7 @@ function DashboardLayout() {
             location.pathname.includes("/dashboard/setting") ||
             location.pathname.includes("/dashboard/messages")
               ? "p-0"
-              : "md:p-8"
+              : "lg:p-8"
           }`}
         >
           <Outlet />

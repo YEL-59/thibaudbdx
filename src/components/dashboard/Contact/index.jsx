@@ -62,12 +62,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="grid grid-cols-1  gap-6 p-4">
+    <div className="grid grid-cols-1 gap-6 p-4">
       {/* Left Column */}
       <div className="space-y-6">
         {/* Tabs + Content */}
         <section className="space-y-4" data-aos="fade-up">
-          <div className="flex justify-between">
+          <div className="flex justify-between lg:items-center flex-col lg:flex-row gap-y-5">
             {/* Tabs */}
             <div className="flex flex-wrap gap-2 font-['poppins']">
               {["Prospect", "Client", "Inactive"].map((type) => (
@@ -128,27 +128,28 @@ export default function Contact() {
 function CreateContactButton() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
-    <div className="absolute bottom-20 right-20">
-      <div className="absolute bottom-32 right-24">
+    <div className="absolute bottom-10 md:bottom-20 right-10 md:right-20">
+      <div className="absolute bottom-20 md:bottom-32 right-0 md:right-24">
         {isDropdownOpen && <DropdownButton />}
       </div>
       <div
-        className="bg-secondary absolute bottom-0 right-0 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4 w-fit"
+        className="bg-secondary absolute bottom-0 right-0 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-2 md:p-4 w-fit"
         data-aos="zoom-in"
         data-aos-delay="700"
       >
         <button
-          className={`bg-primary p-5 rounded-full inline-block transition-transform duration-300 ${
+          className={`bg-primary p-2 md:p-5 rounded-full inline-block transition-transform duration-300 ${
             isDropdownOpen ? "rotate-45 scale-95" : ""
           }`}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
+            // width="36"
+            // height="36"
             viewBox="0 0 36 36"
             fill="none"
+            className="w-[15px] xl:w-[32px] h-[15px] xl:h-[30px]"
           >
             <path
               d="M7.60568 18.0002H28.3936"

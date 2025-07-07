@@ -34,15 +34,26 @@ import {
   NotesPage,
   NotesPageLayout,
 } from "@/components/dashboard/Notes/NotesPage";
+import { TastingPage } from "@/components/dashboard/Tasting/TastingPage";
+import ForgotPassword from "@/components/shared/forgotPassword";
+import SignIn from "@/components/shared/signIn";
+import SignUp from "@/components/shared/signUp";
+import VerifyOTP from "@/components/shared/verifyOTP";
 import { ContactLayout, ContactSubLayout } from "@/layout/contact-layout";
 import DashboardLayout from "@/layout/layout";
 import Home from "@/pages/Home";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
+import PrivateRoute from "./private-route";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
@@ -52,114 +63,114 @@ export const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
       },
-      // {
-      //   path: "contact/add-contact",
-      //   element: <AddContactPage />,
-      // },
-      // {
-      //   path: "contact",
-      //   element: <ContactLayout />,
-      //   children: [
-      //     {
-      //       path: ":id/customer-details",
-      //       element: <ContactSubLayout />,
-      //       children: [
-      //         {
-      //           index: true,
-      //           element: <CustomerDetailsPage />,
-      //         },
-      //         {
-      //           path: "meeting",
-      //           element: <MeetingLayout />,
-      //           children: [
-      //             {
-      //               index: true,
-      //               element: <MeetingPage />,
-      //             },
-      //             {
-      //               path: "meetings-details/:meetingId",
-      //               element: <MeetingsDetails />,
-      //             },
-      //             {
-      //               path: "create-meeting",
-      //               element: <CreateMeetingPage />,
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           path: "task",
-      //           element: <TaskPageLayout />,
-      //           children: [
-      //             {
-      //               index: true,
-      //               element: <TaskPage />,
-      //             },
-      //             {
-      //               path: "task-details/:taskId",
-      //               element: <TaskDetails />,
-      //             },
-      //             {
-      //               path: "create-task",
-      //               element: <CreateTask />,
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           path: "notes",
-      //           element: <NotesDetailsLayout />,
-      //           children: [
-      //             {
-      //               index: true,
-      //               element: <NotesDetailsPage />,
-      //             },
-      //             {
-      //               path: "notes-details/:notesId",
-      //               element: <NotesDetails />,
-      //             },
-      //             {
-      //               path: "create-notes",
-      //               element: <CreateNotesPage />,
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           path: "tasting",
-      //           element: <TastingDetailsPageLayout />,
-      //           children: [
-      //             {
-      //               index: true,
-      //               element: <TastingDetailsPage />,
-      //             },
-      //             {
-      //               path: "tasting-details/:tastingId",
-      //               element: <TastingDetails />,
-      //             },
-      //             {
-      //               path: "create-tasting",
-      //               element: <CreateTesting />,
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           path: "edit",
-      //           element: <h1>edit details</h1>,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       path: ":id/activity",
-      //       element: <ActivityPage />,
-      //     },
-      //     {
-      //       path: ":id/docs",
-      //       element: <DocsPage />,
-      //     },
-      //     {
-      //       path: ":id/sales",
-      //       element: <SalesPage />,
-      //     },
-      //   ],
-      // },
+      {
+        path: "contact/add-contact",
+        element: <AddContactPage />,
+      },
+      {
+        path: "contact",
+        element: <ContactLayout />,
+        children: [
+          {
+            path: ":id/customer-details",
+            element: <ContactSubLayout />,
+            children: [
+              {
+                index: true,
+                element: <CustomerDetailsPage />,
+              },
+              {
+                path: "meeting",
+                element: <MeetingLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <MeetingPage />,
+                  },
+                  {
+                    path: "meetings-details/:meetingId",
+                    element: <MeetingsDetails />,
+                  },
+                  {
+                    path: "create-meeting",
+                    element: <CreateMeetingPage />,
+                  },
+                ],
+              },
+              {
+                path: "task",
+                element: <TaskPageLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <TaskPage />,
+                  },
+                  {
+                    path: "task-details/:taskId",
+                    element: <TaskDetails />,
+                  },
+                  {
+                    path: "create-task",
+                    element: <CreateTask />,
+                  },
+                ],
+              },
+              {
+                path: "notes",
+                element: <NotesDetailsLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <NotesDetailsPage />,
+                  },
+                  {
+                    path: "notes-details/:notesId",
+                    element: <NotesDetails />,
+                  },
+                  {
+                    path: "create-notes",
+                    element: <CreateNotesPage />,
+                  },
+                ],
+              },
+              {
+                path: "tasting",
+                element: <TastingDetailsPageLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <TastingDetailsPage />,
+                  },
+                  {
+                    path: "tasting-details/:tastingId",
+                    element: <TastingDetails />,
+                  },
+                  {
+                    path: "create-tasting",
+                    element: <CreateTesting />,
+                  },
+                ],
+              },
+              {
+                path: "edit",
+                element: <h1>edit details</h1>,
+              },
+            ],
+          },
+          {
+            path: ":id/activity",
+            element: <ActivityPage />,
+          },
+          {
+            path: ":id/docs",
+            element: <DocsPage />,
+          },
+          {
+            path: ":id/sales",
+            element: <SalesPage />,
+          },
+        ],
+      },
       {
         path: "notes",
         element: <NotesPageLayout />,
@@ -178,6 +189,32 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "tasting",
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <TastingPage />,
+          },
+        ],
+      },
     ],
+  },
+  {
+    path: "sign-in",
+    element: <SignIn />,
+  },
+  {
+    path: "sign-up",
+    element: <SignUp />,
+  },
+  {
+    path: "otp-verify",
+    element: <VerifyOTP />,
+  },
+  {
+    path: "forgot-password",
+    element: <ForgotPassword />,
   },
 ]);

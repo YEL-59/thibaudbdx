@@ -103,7 +103,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
         </div>
       </div>
 
-      <div className="flex gap-10 justify-between">
+      <div className="flex gap-10 justify-between items-center">
         <div class="relative md:w-lg md:max-w-2xl">
           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <Search />

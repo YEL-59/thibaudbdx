@@ -2,10 +2,10 @@ import DocsIcon from "@/assets/svg/DocsIcon";
 import TwoUserIcon from "@/assets/svg/TwoUserIcon";
 import VoiceNotes from "@/assets/svg/VoiceNotes";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import images from "@/constants/images";
-import { useState } from "react";
-import { Outlet, useLocation, useNavigate, useParams } from "react-router";
+import React, { useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 const notesData = [
   {
@@ -60,18 +60,8 @@ const notesData = [
   },
 ];
 
-// Note Page Layout
-export function NotesPageLayout() {
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
-}
-
-// Note Page
-export function NotesPage() {
-  const hasNotesData = notesData.length > 0;
+export function TastingPage() {
+  const hasNotesData = !notesData.length > 0;
 
   let content;
 
@@ -97,15 +87,10 @@ export function NotesPage() {
 function NoDataPage() {
   return (
     <div className="h-[70vh] flex flex-col items-center justify-center">
-      <img src={images.empty_folder} alt="Empty Folder" />
+      <img src={images.empty_folder_4} alt="Empty Folder" />
       <div className="text-center mt-4">
         <p className="text-sm font-poppins text-text-paragraph-400">
           No Activity Yet
-        </p>
-        <p className="text-sm font-poppins text-text-paragraph-400 mt-3">
-          Activities will start appearing here once you initiate any actions{" "}
-          <br />
-          with your contact
         </p>
       </div>
     </div>
@@ -161,8 +146,8 @@ function CreateButton() {
       </div>
       <div
         className="bg-secondary absolute bottom-0 right-0 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-2.5 lg:p-4 w-fit"
-        // data-aos="zoom-in"
-        // data-aos-delay="700"
+        data-aos="zoom-in"
+        data-aos-delay="700"
       >
         <button
           className={`bg-primary p-2.5 lg:p-5 rounded-full inline-block transition-transform duration-300 ${
