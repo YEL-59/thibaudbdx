@@ -13,6 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import ReusableCheckboxField from "../InputField/ReusableCheckboxField";
 import { useSignUp } from "@/hooks/api/auth.hook";
 import { Link } from "react-router";
+import { Separator } from "@/components/ui/separator";
 // import { FcGoogle } from "react-icons/fc"; // Uncomment if using react-icons
 
 export default function SignUp() {
@@ -33,19 +34,16 @@ export default function SignUp() {
         {/* Left side illustration or info */}
         <div className="hidden md:flex flex-col justify-center items-center bg-[#fafbfc] w-1/2 p-10">
           {/* You can put an illustration or branding here */}
-          <span className="rounded-full flex items-center justify-center text-4xl font-bold text-primary mb-6">
+          <span className="flex items-center justify-center text-4xl font-bold mb-6 text-primary w-48">
             <img
-              src={images?.logo}
+              src={images?.logo_2}
               alt=""
-              className="h-full w-full rounded-full"
+              className="h-full w-full object-contain"
             />
           </span>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            Welcome to Thibaud BDX
-          </h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-2">Welcome</h2>
           <p className="text-gray-500 text-center">
-            Manage your contacts, notes, and more with a modern dashboard
-            experience.
+            The CRM that speaks Winemaker.
           </p>
         </div>
         {/* Right side form */}
@@ -60,6 +58,22 @@ export default function SignUp() {
                   <h3 className="text-2xl font-semibold mb-4 text-center md:text-left">
                     Sign Up
                   </h3>
+                  <Button
+                    variant="outline"
+                    className="w-full h-11 mt-2 flex items-center justify-center gap-2 border border-gray-200"
+                    type="button"
+                  >
+                    {/* <FcGoogle className="text-lg" /> */}
+                    <Google />
+                    Sign In With Google
+                  </Button>
+                  <div className="relative flex items-center justify-center overflow-hidden">
+                    <Separator />
+                    <div className="px-2 text-center bg-background text-sm">
+                      OR
+                    </div>
+                    <Separator />
+                  </div>
                   <div>
                     <ReusableInputField
                       name="name"
@@ -115,15 +129,6 @@ export default function SignUp() {
                   Sign In
                 </Link>
               </div>
-              <Button
-                variant="outline"
-                className="w-full h-11 mt-2 flex items-center justify-center gap-2 border border-gray-200"
-                type="button"
-              >
-                {/* <FcGoogle className="text-lg" /> */}
-                <Google />
-                Sign In With Google
-              </Button>
             </CardContent>
           </Card>
         </div>

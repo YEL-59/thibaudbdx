@@ -8,6 +8,7 @@ import Google from "@/assets/svg/Google";
 import ReusableCheckboxField from "../InputField/ReusableCheckboxField";
 import { useSignIn } from "@/hooks/api/auth.hook";
 import { Link } from "react-router";
+import { Separator } from "@/components/ui/separator";
 
 const SignIn = () => {
   const { form, mutate, isPending } = useSignIn();
@@ -27,19 +28,16 @@ const SignIn = () => {
         {/* Left side illustration or info */}
         <div className="hidden md:flex flex-col justify-center items-center bg-[#fafbfc] w-1/2 p-10">
           {/* You can put an illustration or branding here */}
-          <span className="rounded-full flex items-center justify-center text-4xl font-bold text-primary mb-6">
+          <span className="flex items-center justify-center text-4xl font-bold mb-6 text-primary w-48">
             <img
-              src={images?.logo}
+              src={images?.logo_2}
               alt=""
-              className="h-full w-full rounded-full"
+              className="h-full w-full object-contain"
             />
           </span>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            Welcome to Thibaud BDX
-          </h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-2">Welcome</h2>
           <p className="text-gray-500 text-center">
-            Manage your contacts, notes, and more with a modern dashboard
-            experience.
+            The CRM that speaks Winemaker.
           </p>
         </div>
         {/* Right side form */}
@@ -54,6 +52,22 @@ const SignIn = () => {
                   <h3 className="text-2xl font-semibold mb-4 text-center md:text-left">
                     Sign In
                   </h3>
+                  <Button
+                    variant="outline"
+                    className="w-full h-11 mt-2 flex items-center justify-center gap-2 border border-gray-200"
+                    type="button"
+                  >
+                    {/* <FcGoogle className="text-lg" /> */}
+                    <Google />
+                    Sign In With Google
+                  </Button>
+                  <div className="relative flex items-center justify-center overflow-hidden">
+                    <Separator />
+                    <div className="px-2 text-center bg-background text-sm">
+                      OR
+                    </div>
+                    <Separator />
+                  </div>
                   <div>
                     <ReusableInputField
                       name="email"
@@ -77,7 +91,9 @@ const SignIn = () => {
                       label="Remember Me"
                     />
                     <div className="text-center text-xs text-gray-500">
-                      <Link to="/forgot-password" className="hover:underline">Forgot Password</Link>
+                      <Link to="/forgot-password" className="hover:underline">
+                        Forgot Password
+                      </Link>
                     </div>
                   </div>
                   <Button
@@ -93,15 +109,6 @@ const SignIn = () => {
               <div className="text-center text-xs text-gray-500 mt-4">
                 Don't have an account? <Link to="/sign-up">Sign Up</Link>
               </div>
-              <Button
-                variant="outline"
-                className="w-full h-11 mt-2 flex items-center justify-center gap-2 border border-gray-200"
-                type="button"
-              >
-                {/* <FcGoogle className="text-lg" /> */}
-                <Google />
-                Sign In With Google
-              </Button>
             </CardContent>
           </Card>
         </div>
