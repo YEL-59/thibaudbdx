@@ -1,13 +1,14 @@
 import React from "react";
 
-const TastingIcon = () => {
+const TastingIcon = ({className}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
+      // width="34"
+      // height="34"
       viewBox="0 0 34 34"
       fill="none"
+      className={className}
     >
       <path
         d="M30.8375 14.0439V20.9557C30.8375 27.8675 28.0728 30.6322 21.161 30.6322H12.8669C5.95514 30.6322 3.19043 27.8675 3.19043 20.9557V12.6616C3.19043 5.74981 5.95514 2.98511 12.8669 2.98511H19.7787"

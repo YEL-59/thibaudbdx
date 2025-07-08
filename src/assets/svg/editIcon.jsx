@@ -1,13 +1,14 @@
 import React from "react";
 
-const EditIcon = () => {
+const EditIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
+      // width="34"
+      // height="34"
       viewBox="0 0 34 34"
       fill="none"
+      className={className}
     >
       <path
         d="M16.0144 2.98535H13.2497C6.33795 2.98535 3.57324 5.75006 3.57324 12.6618V20.9559C3.57324 27.8677 6.33795 30.6324 13.2497 30.6324H21.5438C28.4556 30.6324 31.2203 27.8677 31.2203 20.9559V18.1912"

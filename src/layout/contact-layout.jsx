@@ -31,23 +31,23 @@ const contactMainRoutes = [
 const subRoutes = [
   {
     path: "meeting",
-    icon: <MeetingIcon />,
+    icon: <MeetingIcon  className={"w-[20px] lg:w-[34px] h-[20px] lg:h-[34px]"} />,
   },
   {
     path: "task",
-    icon: <TaskIcon />,
+    icon: <TaskIcon className={"w-[20px] lg:w-[34px] h-[20px] lg:h-[34px]"}/>,
   },
   {
     path: "notes",
-    icon: <NotesIcon />,
+    icon: <NotesIcon className={"w-[20px] lg:w-[34px] h-[20px] lg:h-[34px]"}/>,
   },
   {
     path: "tasting",
-    icon: <TastingIcon />,
+    icon: <TastingIcon className={"w-[20px] lg:w-[34px] h-[20px] lg:h-[34px]"}/>,
   },
   {
     path: "edit",
-    icon: <EditIcon />,
+    icon: <EditIcon className={"w-[20px] lg:w-[34px] h-[20px] lg:h-[34px]"}/>,
   },
 ];
 
@@ -70,12 +70,12 @@ function DefaultLayout() {
 }
 function CustomerDetailsLayout() {
   return (
-    <div className="flex gap-24">
-      <div className="w-2/3">
+    <div className="flex gap-10 lg:gap-6">
+      <div className="w-full lg:w-2/3">
         <HeaderLayout />
         <Outlet />
       </div>
-      <div className="flex-1">
+      <div className="hidden lg:flex lg:flex-1">
         <SideSection />
       </div>
     </div>
@@ -87,7 +87,7 @@ export function ContactSubLayout() {
   const location = useLocation();
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex items-center gap-14 mt-5 px-6">
+      <div className="flex items-center gap-3 justify-between lg:justify-start lg:gap-14 mt-5 px-6">
         {subRoutes.map(({ path, icon }, index) => (
           <NavLink
             key={index}
@@ -123,13 +123,13 @@ function HeaderLayout() {
 
   return (
     <div>
-      <div className="flex items-center gap-5 mb-9">
+      <div className="flex items-center gap-5 mt-4 mb-9 px-5">
         {routesToDisplay.map(({ path, text }, index) => (
           <NavLink
             key={index}
             to={`/contact/${id}/${path}`}
             className={({ isActive }) =>
-              `text-2xl font-semibold h-[75px] w-[260px] rounded-xl flex items-center justify-center font-poppins border-2 border-primary text-primary ${
+              `text-sm lg:text-2xl font-semibold lg:h-[75px] lg:w-[260px] rounded lg:rounded-xl flex items-center justify-center font-poppins border-2 border-primary text-primary px-2 ${
                 isActive ? "bg-primary text-white" : ""
               }`
             }

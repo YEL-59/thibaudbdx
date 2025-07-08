@@ -4,8 +4,8 @@ import React from "react";
 const CustomerDetailsPage = () => {
   return (
     <section>
-      <div className="container pb-40">
-        <div className="gap-y-3 grid grid-cols-2 gap-x-[75px] mt-11">
+      <div className="container pb-40 px-5">
+        <div className="gap-y-3 grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-x-[75px] mt-11">
           {/* Contact Type */}
           <Card
             className="p-3 gap-0 border-none"
@@ -229,7 +229,7 @@ const CustomerDetailsPage = () => {
             <p className="text-sm text-text-paragraph-400 mt-1">234</p>
           </Card>
         </div>
-        <div
+        {/* <div
           className="bg-[#B3B7FE] border-2 rounded-2xl py-4 px-5 mt-11"
           data-aos="fade-up"
           data-aos-delay="1000"
@@ -238,7 +238,7 @@ const CustomerDetailsPage = () => {
             Last Sales Update
           </h3>
           <div className="h-24 bg-white rounded-xl mt-3.5"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

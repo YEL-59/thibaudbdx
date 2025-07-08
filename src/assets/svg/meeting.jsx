@@ -1,13 +1,14 @@
 import React from "react";
 
-const MeetingIcon = () => {
+const MeetingIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="34"
-      height="34"
+      // width="34"
+      // height="34"
       viewBox="0 0 34 34"
       fill="none"
+      className={className}
     >
       <path
         d="M13.4702 15.0261C13.3319 15.0123 13.166 15.0123 13.014 15.0261C9.72398 14.9155 7.11133 12.2199 7.11133 8.9023C7.11133 5.51553 9.84839 2.76465 13.249 2.76465C16.6357 2.76465 19.3866 5.51553 19.3866 8.9023C19.3728 12.2199 16.7602 14.9155 13.4702 15.0261Z"

@@ -104,16 +104,15 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
           </p>
         </div>
       </div>
-
-      <div className="flex gap-10 justify-between items-center">
-        <div class="relative md:w-lg md:max-w-2xl">
+      <div className="flex flex-1 lg:gap-10 lg:justify-between items-center">
+        <div class="relative md:w-lg md:max-w-2xl mx-auto">
           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <Search />
           </div>
           <input
             type="search"
             id="default-search"
-            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="block w-full px-4 py-2 lg:p-4 ps-10 lg:ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search Mockups, Logos..."
             required
           />
@@ -122,7 +121,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
           <Avatar className="h-12 w-12">
             <AvatarImage src="https://i.pravatar.cc/40" alt="Ivay Jack" />
             <AvatarFallback className={"uppercase"}>
-              {user?.name?.slice(0, 1)}
+              {user?.name?.slice(0, 1) ?? "CN"}
             </AvatarFallback>
           </Avatar>
           <div className=" flex-col">
@@ -135,7 +134,7 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
           </div>
         </div>
         <div className="md:hidden flex">
-          <PopOver />
+          <PopOver user={user} />
         </div>
       </div>
     </div>
@@ -144,22 +143,25 @@ function Navbar({ sidebarOpen, setSidebarOpen }) {
 
 export default Navbar;
 
-function PopOver() {
+function PopOver({ user }) {
   return (
     <HoverCard>
       <HoverCardTrigger className="cursor-pointer">
         <Avatar className="h-12 w-12">
           <AvatarImage src="https://i.pravatar.cc/40" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>{user?.name?.slice(0, 1) ?? "CN"}</AvatarFallback>
         </Avatar>
       </HoverCardTrigger>
       <HoverCardContent className="w-full max-w-xs">
         <div className="flex justify-between space-x-4">
           <div className=" flex-col">
-            <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px]">
-              Ivay Jack
+            <h3 className="text-lg font-semibold leading-[132%] tracking-[-0.32px] capitalize">
+              {user?.name ?? "Your Name"}
             </h3>
-            <p className="text-base leading-[164%]">Ivayjack@outlook.com</p>
+            <p className="text-base leading-[164%]">
+              {" "}
+              {user?.email ?? "example@gmail.com"}
+            </p>
           </div>
         </div>
       </HoverCardContent>
