@@ -59,7 +59,7 @@ const docs = [
 
 const SideSection = () => {
   return (
-    <div className="space-y-8 px-6">
+    <div className="space-y-8 w-full">
       <Activity />
       <Docs />
     </div>
