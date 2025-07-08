@@ -68,11 +68,11 @@ function ForgotPasswordEmailSubmit({ setForgotPasswordState }) {
         {/* Left side illustration or info */}
         <div className="hidden md:flex flex-col justify-center items-center bg-[#fafbfc] w-1/2 p-10">
           {/* You can put an illustration or branding here */}
-          <span className="rounded-full flex items-center justify-center text-4xl font-bold text-primary mb-6">
+          <span className="flex items-center justify-center text-4xl font-bold mb-6 text-primary w-36">
             <img
-              src={images?.logo}
+              src={images?.logo_2}
               alt=""
-              className="h-full w-full rounded-full"
+              className="h-full w-full object-contain"
             />
           </span>
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
@@ -162,11 +162,11 @@ function ForgotPasswordOTPSubmit({ setForgotPasswordState }) {
         {/* Left side illustration or info */}
         <div className="hidden md:flex flex-col justify-center items-center bg-[#fafbfc] w-1/2 p-10">
           {/* You can put an illustration or branding here */}
-          <span className="rounded-full flex items-center justify-center text-4xl font-bold text-primary mb-6">
+          <span className="flex items-center justify-center text-4xl font-bold mb-6 text-primary w-36">
             <img
-              src={images?.logo}
+              src={images?.logo_2}
               alt=""
-              className="h-full w-full rounded-full"
+              className="h-full w-full object-contain"
             />
           </span>
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">CRM</h2>
@@ -241,11 +241,11 @@ function CreateNewPassword() {
         {/* Left side illustration or info */}
         <div className="hidden md:flex flex-col justify-center items-center bg-[#fafbfc] w-1/2 p-10">
           {/* You can put an illustration or branding here */}
-          <span className="rounded-full flex items-center justify-center text-4xl font-bold text-primary mb-6">
+          <span className="flex items-center justify-center text-4xl font-bold mb-6 text-primary w-36">
             <img
-              src={images?.logo}
+              src={images?.logo_2}
               alt=""
-              className="h-full w-full rounded-full"
+              className="h-full w-full object-contain"
             />
           </span>
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
