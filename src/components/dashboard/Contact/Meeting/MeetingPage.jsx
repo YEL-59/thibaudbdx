@@ -67,7 +67,7 @@ export const MeetingLayout = () => {
 export const MeetingPage = () => {
   return (
     <section>
-      <div className="container px-5">
+      <div className="container mx-auto md:mx-0 px-5">
         <MeetingItem />
         <CreateMeetingButton />
       </div>

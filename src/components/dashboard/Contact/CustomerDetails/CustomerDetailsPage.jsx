@@ -4,8 +4,8 @@ import React from "react";
 const CustomerDetailsPage = () => {
   return (
     <section>
-      <div className="container pb-40 px-5">
-        <div className="gap-y-3 grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-x-[75px] mt-11">
+      <div className="container pb-40 px-5 mx-auto">
+        <div className="gap-y-3 grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-x-[75px] mt-11">
           {/* Contact Type */}
           <Card
             className="p-3 gap-0 border-none"
