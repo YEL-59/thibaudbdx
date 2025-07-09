@@ -91,7 +91,7 @@ export default function MeetingsDetails() {
 
   return (
     <section>
-      <div className="container mx-auto py-10">
+      <div className="container !mx-0 lg:mx-auto py-10 px-5">
         {/* Title, Date & Time */}
         <Card
           className="mb-3 border-none gap-0"
