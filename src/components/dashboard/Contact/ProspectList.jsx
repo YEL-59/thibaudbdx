@@ -92,12 +92,12 @@ const ProspectList = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Owner Name</TableHead>
-                  <TableHead>Company</TableHead>
-                  <TableHead>Address</TableHead>
-                  <TableHead>Phone</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Contact Type</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>Owner Name</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>Company</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>Address</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>Phone</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>Email</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>Contact Type</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -109,14 +109,26 @@ const ProspectList = () => {
                         state: { from: location.pathname, isNew: true },
                       })
                     }
-                    className="cursor-pointer hover:bg-gray-100 select-none"
+                    className="cursor-pointer hover:bg-gray-100 select-none last:!border-b"
                   >
-                    <TableCell>{item.ownerName}</TableCell>
-                    <TableCell>{item.company}</TableCell>
-                    <TableCell>{item.address}</TableCell>
-                    <TableCell>{item.phone}</TableCell>
-                    <TableCell>{item.email}</TableCell>
-                    <TableCell>{item.contactType}</TableCell>
+                    <TableCell className={"h-auto py-6"}>
+                      {item.ownerName}
+                    </TableCell>
+                    <TableCell className={"h-auto py-6"}>
+                      {item.company}
+                    </TableCell>
+                    <TableCell className={"h-auto py-6"}>
+                      {item.address}
+                    </TableCell>
+                    <TableCell className={"h-auto py-6"}>
+                      {item.phone}
+                    </TableCell>
+                    <TableCell className={"h-auto py-6"}>
+                      {item.email}
+                    </TableCell>
+                    <TableCell className={"h-auto py-6"}>
+                      {item.contactType}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
