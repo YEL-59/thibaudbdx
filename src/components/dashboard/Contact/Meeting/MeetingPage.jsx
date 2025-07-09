@@ -67,7 +67,7 @@ export const MeetingLayout = () => {
 export const MeetingPage = () => {
   return (
     <section>
-      <div className="container">
+      <div className="container px-5">
         <MeetingItem />
         <CreateMeetingButton />
       </div>
@@ -116,20 +116,21 @@ function MeetingItem() {
 function CreateMeetingButton() {
   return (
     <div
-      className="bg-secondary absolute bottom-20 right-20 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4"
+      className="bg-secondary/25 p-2.5 xl:p-5 fixed bottom-5 right-5 lg:right-20 rounded-full border-2 flex items-center justify-center"
       data-aos="zoom-in"
       data-aos-delay="700"
     >
       <Link
         to="create-meeting"
-        className="bg-primary p-5 rounded-full inline-block"
+        className="bg-primary p-2.5 xl:p-5 rounded-full inline-block"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
+          // width="36"
+          // height="36"
           viewBox="0 0 36 36"
           fill="none"
+          className="w-[15px] xl:w-[32px] h-[15px] xl:h-[30px]"
         >
           <path
             d="M7.60568 18.0002H28.3936"
