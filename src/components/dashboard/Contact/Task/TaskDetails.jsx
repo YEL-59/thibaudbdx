@@ -67,7 +67,7 @@ export default function TaskDetails() {
   const { task, date, time, description } = taskSingleInfo;
   return (
     <section>
-      <div className="container">
+      <div className="container !mx-0 lg:mx-auto py-10 px-5">
         <Card
           className="mb-3 border-none gap-0"
           data-aos="fade-up"
@@ -101,7 +101,9 @@ export default function TaskDetails() {
           </CardContent>
         </Card>
         {/* Delete Button */}
-        <div className="flex justify-center mt-16">
+        <div
+          className="flex justify-center mt-16"
+        >
           <Button className="bg-[#615EF0] text-white w-60 h-11 rounded-md text-base font-medium">
             Delete
           </Button>
