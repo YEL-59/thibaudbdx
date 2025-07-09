@@ -319,8 +319,8 @@ function LinkButton() {
   return (
     <div
       className="bg-secondary/25 p-2.5 xl:p-5 fixed bottom-5 right-5 lg:right-20 rounded-full border-2 flex items-center justify-center"
-      data-aos="zoom-in"
-      data-aos-delay="700"
+      // data-aos="zoom-in"
+      // data-aos-delay="700"
     >
       <a href="#" className="bg-primary p-2.5 xl:p-5 rounded-full inline-block">
         <svg

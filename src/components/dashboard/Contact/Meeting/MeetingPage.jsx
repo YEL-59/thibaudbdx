@@ -79,7 +79,7 @@ function MeetingItem() {
   const navigate = useNavigate();
   const { id } = useParams();
   return (
-    <div className="space-y-5 mt-10">
+    <div className="space-y-5 mt-10 mb-10">
       {meetingData.map((item, index) => (
         <div key={item?.id} data-aos="fade-up" data-aos-delay={index * 100}>
           <Card
@@ -117,8 +117,8 @@ function CreateMeetingButton() {
   return (
     <div
       className="bg-secondary/25 p-2.5 xl:p-5 fixed bottom-5 right-5 lg:right-20 rounded-full border-2 flex items-center justify-center"
-      data-aos="zoom-in"
-      data-aos-delay="700"
+      // data-aos="zoom-in"
+      // data-aos-delay="700"
     >
       <Link
         to="create-meeting"
