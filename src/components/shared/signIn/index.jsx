@@ -49,7 +49,7 @@ const SignIn = () => {
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-10"
                 >
-                  <h3 className="text-2xl font-semibold mb-4 text-center md:text-left">
+                  <h3 className="text-2xl font-semibold mb-4 !text-center">
                     Sign In
                   </h3>
                   <Button

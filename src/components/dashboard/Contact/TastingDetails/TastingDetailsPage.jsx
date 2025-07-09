@@ -61,7 +61,7 @@ export function TastingDetailsPageLayout() {
 export function TastingDetailsPage() {
   return (
     <section>
-      <div className="container">
+      <div className="container !mx-0 lg:mx-auto px-5">
         <TastingItem />
         <CreateTastingButton />
       </div>
@@ -73,7 +73,7 @@ function TastingItem() {
   const navigate = useNavigate();
   const { id } = useParams();
   return (
-    <div className="space-y-5 mt-10">
+    <div className="space-y-5 mt-10 mb-10">
       {testingData.map((item, index) => (
         <div key={item?.id} data-aos="fade-up" data-aos-delay={index * 100}>
           <Card
@@ -110,20 +110,21 @@ function TastingItem() {
 function CreateTastingButton() {
   return (
     <div
-      className="bg-secondary absolute bottom-20 right-20 rounded-full border-2 flex items-center justify-center transition-all duration-500 p-4"
-      data-aos="zoom-in"
-      data-aos-delay="700"
+      className="bg-secondary/25 p-2.5 xl:p-5 fixed bottom-5 right-5 lg:right-20 rounded-full border-2 flex items-center justify-center"
+      // data-aos="zoom-in"
+      // data-aos-delay="700"
     >
       <Link
         to="create-tasting"
-        className="bg-primary p-5 rounded-full inline-block"
+        className="bg-primary p-2.5 xl:p-5 rounded-full inline-block"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
+          // width="36"
+          // height="36"
           viewBox="0 0 36 36"
           fill="none"
+          className="w-[15px] xl:w-[32px] h-[15px] xl:h-[30px]"
         >
           <path
             d="M7.60568 18.0002H28.3936"

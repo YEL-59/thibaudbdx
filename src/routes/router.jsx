@@ -115,42 +115,42 @@ export const router = createBrowserRouter([
                   },
                 ],
               },
-              {
-                path: "notes",
-                element: <NotesDetailsLayout />,
-                children: [
-                  {
-                    index: true,
-                    element: <NotesDetailsPage />,
-                  },
-                  {
-                    path: "notes-details/:notesId",
-                    element: <NotesDetails />,
-                  },
-                  {
-                    path: "create-notes",
-                    element: <CreateNotesPage />,
-                  },
-                ],
-              },
-              {
-                path: "tasting",
-                element: <TastingDetailsPageLayout />,
-                children: [
-                  {
-                    index: true,
-                    element: <TastingDetailsPage />,
-                  },
-                  {
-                    path: "tasting-details/:tastingId",
-                    element: <TastingDetails />,
-                  },
-                  {
-                    path: "create-tasting",
-                    element: <CreateTesting />,
-                  },
-                ],
-              },
+              // {
+              //   path: "notes",
+              //   element: <NotesDetailsLayout />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <NotesDetailsPage />,
+              //     },
+              //     {
+              //       path: "notes-details/:notesId",
+              //       element: <NotesDetails />,
+              //     },
+              //     {
+              //       path: "create-notes",
+              //       element: <CreateNotesPage />,
+              //     },
+              //   ],
+              // },
+              // {
+              //   path: "tasting",
+              //   element: <TastingDetailsPageLayout />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <TastingDetailsPage />,
+              //     },
+              //     {
+              //       path: "tasting-details/:tastingId",
+              //       element: <TastingDetails />,
+              //     },
+              //     {
+              //       path: "create-tasting",
+              //       element: <CreateTesting />,
+              //     },
+              //   ],
+              // },
               {
                 path: "edit",
                 element: <h1>edit details</h1>,

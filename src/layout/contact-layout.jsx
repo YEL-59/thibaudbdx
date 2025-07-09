@@ -86,8 +86,8 @@ export function ContactSubLayout() {
   const { id: contactId } = useParams();
   const location = useLocation();
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex items-center gap-3 justify-between lg:justify-start lg:gap-14 mt-5 px-6">
+    <div className="flex flex-col lg:gap-5">
+      <div className="flex items-center gap-3 justify-between md:justify-start lg:gap-14 mt-5 px-6">
         {subRoutes.map(({ path, icon }, index) => (
           <NavLink
             key={index}
@@ -123,13 +123,13 @@ function HeaderLayout() {
 
   return (
     <div>
-      <div className="flex items-center gap-5 mt-4 mb-9 px-5">
+      <div className="flex items-center  gap-5 mt-4 lg:mb-9 px-5">
         {routesToDisplay.map(({ path, text }, index) => (
           <NavLink
             key={index}
             to={`/contact/${id}/${path}`}
             className={({ isActive }) =>
-              `text-sm lg:text-2xl font-semibold lg:h-[75px] lg:w-[260px] rounded lg:rounded-xl flex items-center justify-center font-poppins border-2 border-primary text-primary px-2 ${
+              `text-sm lg:text-2xl lg:font-semibold h-[40px] w-[100px] lg:h-[75px] lg:w-[260px] rounded lg:rounded-xl flex items-center justify-center font-poppins border lg:border-2 border-primary text-primary px-2 ${
                 isActive ? "bg-primary text-white" : ""
               }`
             }
