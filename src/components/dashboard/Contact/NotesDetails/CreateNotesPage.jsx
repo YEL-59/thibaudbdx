@@ -8,7 +8,7 @@ export default function CreateNotesPage() {
 
   return (
     <section>
-      <div className="container">
+      <div className="container !mx-0 lg:mx-auto py-10 px-5">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(mutate)} className="space-y-6">
             <div data-aos="fade-up" data-aos-delay="300">

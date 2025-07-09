@@ -59,7 +59,7 @@ export default function NotesDetails() {
   if (!taskSingleInfo) {
     return (
       <section>
-        <div className="container py-10">
+        <div className="container !mx-0 lg:mx-auto py-10 px-5">
           <Card>
             <CardHeader>
               <CardTitle>Notes not found</CardTitle>
@@ -77,7 +77,7 @@ export default function NotesDetails() {
   const { name, time, description } = taskSingleInfo;
   return (
     <section>
-      <div className="container">
+      <div className="container !mx-0 lg:mx-auto py-10 px-5">
         {/* Description */}
         <Card
           className="mb-3 border-none gap-0"
