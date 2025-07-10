@@ -47,11 +47,12 @@ function InactiveList() {
 export default function Contact() {
   const [selectedType, setSelectedType] = useState("Prospect");
   const [showMap, setShowMap] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
 
   const renderTabComponent = () => {
     switch (selectedType) {
       case "Prospect":
-        return <ProspectList />;
+        return <ProspectList setUserLocation={setUserLocation} />;
       case "Client":
         return <ClientList />;
       case "Inactive":
@@ -114,7 +115,8 @@ export default function Contact() {
 
           {/* Component based on selected tab */}
           <div>
-            {renderTabComponent()} {showMap && <MapTable />}
+            {showMap && <MapTable userLocation={userLocation} />}
+            {renderTabComponent()}
           </div>
         </section>
       </div>

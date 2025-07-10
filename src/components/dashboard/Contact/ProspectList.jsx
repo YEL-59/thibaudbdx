@@ -17,7 +17,7 @@ const mockData = [
     id: "defghjkwertyhujkl",
     ownerName: "John Doe",
     company: "Acme Inc.",
-    address: "123 Main St, Dhaka",
+    address: "Chapra Main Rd, 1345, Bangladesh",
     phone: "+8801712345678",
     email: "john@acme.com",
     contactType: "Prospect",
@@ -42,7 +42,7 @@ const mockData = [
   },
 ];
 
-const ProspectList = () => {
+const ProspectList = ({ setUserLocation }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -92,32 +92,49 @@ const ProspectList = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className={"h-auto py-5 text-gray-400"}>Owner Name</TableHead>
-                  <TableHead className={"h-auto py-5 text-gray-400"}>Company</TableHead>
-                  <TableHead className={"h-auto py-5 text-gray-400"}>Address</TableHead>
-                  <TableHead className={"h-auto py-5 text-gray-400"}>Phone</TableHead>
-                  <TableHead className={"h-auto py-5 text-gray-400"}>Email</TableHead>
-                  <TableHead className={"h-auto py-5 text-gray-400"}>Contact Type</TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>
+                    Owner Name
+                  </TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>
+                    Company
+                  </TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>
+                    Address
+                  </TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>
+                    Phone
+                  </TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>
+                    Email
+                  </TableHead>
+                  <TableHead className={"h-auto py-5 text-gray-400"}>
+                    Contact Type
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {mockData.map((item, index) => (
                   <TableRow
                     key={index}
-                    onClick={() =>
-                      navigate(`/contact/${item.id}/customer-details`, {
-                        state: { from: location.pathname, isNew: true },
-                      })
-                    }
                     className="cursor-pointer hover:bg-gray-100 select-none last:!border-b"
                   >
-                    <TableCell className={"h-auto py-6"}>
+                    <TableCell
+                      onClick={() =>
+                        navigate(`/contact/${item.id}/customer-details`, {
+                          state: { from: location.pathname, isNew: true },
+                        })
+                      }
+                      className={"h-auto py-6"}
+                    >
                       {item.ownerName}
                     </TableCell>
                     <TableCell className={"h-auto py-6"}>
                       {item.company}
                     </TableCell>
-                    <TableCell className={"h-auto py-6"}>
+                    <TableCell
+                      onClick={() => setUserLocation(item.address)}
+                      className={"h-auto py-6"}
+                    >
                       {item.address}
                     </TableCell>
                     <TableCell className={"h-auto py-6"}>
