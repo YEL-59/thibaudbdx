@@ -62,7 +62,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-6 p-4">
+    <div className="grid grid-cols-1 gap-6">
       {/* Left Column */}
       <div className="space-y-6">
         {/* Tabs + Content */}
@@ -87,7 +87,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 lg:pr-11">
                 <div class="relative w-lg max-w-2xl">
                   <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <Search />

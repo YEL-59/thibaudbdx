@@ -87,7 +87,7 @@ const ProspectList = () => {
           </p>
         </div>
       ) : (
-        <div className="flex-1 overflow-auto p-4">
+        <div className="flex-1 overflow-auto">
           <div className="min-w-[900px]">
             <Table>
               <TableHeader>

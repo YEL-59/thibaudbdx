@@ -8,10 +8,11 @@ function DashboardLayout() {
   const location = useLocation();
 
   return (
-    <div className="flex items-start bg-[dashboard-background]">
-      <div className="xl:w-[312px]">
+    <div className="flex items-start bg-[dashboard-background] ">
+      {/* <div className="xl:w-[312px]">
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      </div>
+      </div> */}
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-col w-full overflow-x-hidden">
         <Navbar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
         <div
@@ -19,7 +20,7 @@ function DashboardLayout() {
             location.pathname.includes("/dashboard/setting") ||
             location.pathname.includes("/dashboard/messages")
               ? "p-0"
-              : "lg:p-8"
+              : "lg:py-8 lg:px-4"
           }`}
         >
           <Outlet />

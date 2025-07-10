@@ -56,7 +56,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <div
       ref={sidebarRef}
-      className={`border-r border-[#E8E8E8] px-5 md:px-6 lg:px-8 py-3 flex-shrink-0 h-full fixed top-0 xl:shadow-none bg-white z-10 duration-500 ${
+      className={`border-r border-[#E8E8E8] pr-5 md:pr-6 lg:pr-10 py-3 flex-shrink-0 h-screen fixed xl:sticky top-0 xl:shadow-none bg-white z-10 duration-500 ${
         !sidebarOpen ? "-left-full xl:left-0" : "left-0 shadow-lg"
       }`}
     >
@@ -64,7 +64,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         {/* Logo and close */}
         <div className="flex flex-col gap-10 sm:gap-14 md:gap-16 lg:gap-10 items-center">
           <div className="flex items-center justify-between gap-4 w-full">
-            <Logo className="w-28 md:w-32 lg:w-[153px]" />
+            <div className="pl-5 md:pl-6 lg:pl-10">
+              <Logo className="w-28 md:w-32 lg:w-[153px]" />
+            </div>
             <button
               onClick={() => setSidebarOpen(false)}
               className="xl:hidden text-gray-600"
@@ -108,7 +110,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         </div>
 
         {/* Bottom Profile Card */}
-        <div className="bg-[#F4F4F4] p-3 rounded-xl flex flex-col items-center gap-3 w-full mt-auto ">
+        <div className="bg-[#F4F4F4] p-3 rounded-xl flex flex-col items-center gap-3 w-full mt-auto">
           <img
             src="https://i.pravatar.cc/40"
             alt="avatar"
