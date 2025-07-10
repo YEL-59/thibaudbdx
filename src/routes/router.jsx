@@ -199,6 +199,16 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "docs",
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <DocsPage />,
+          },
+        ],
+      },
     ],
   },
   {

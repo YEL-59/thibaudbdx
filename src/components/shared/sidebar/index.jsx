@@ -42,7 +42,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { label: "Contact", icon: Contact, path: "/contact" },
     { label: "Notes", icon: Note, path: "/notes" },
     { label: "Tasting", icon: Tasting, path: "/tasting" },
-    { label: "Docs", icon: Docs, path: "/notification" },
+    { label: "Docs", icon: Docs, path: "/docs" },
     { label: "Map", icon: Map, path: "/setting" },
     { label: "Tags", icon: Tags, path: "/tags" },
     { label: "Import/Export", icon: Importex, path: "/importexport" },
