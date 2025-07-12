@@ -2,7 +2,7 @@ import { axiosPrivate } from "@/lib/axios.config";
 import { useQuery } from "@tanstack/react-query";
 
 // Get Upcoming Meetings
-export const useGetUpcomingMeetings = () => {
+export const useGetUpcomingMeetings = (options = {}) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["upcoming-meetings"],
     queryFn: async () => {
@@ -19,6 +19,7 @@ export const useGetUpcomingMeetings = () => {
         );
       }
     },
+    ...options,
   });
 
   return {
@@ -30,7 +31,7 @@ export const useGetUpcomingMeetings = () => {
 };
 
 // Get Upcomming Task
-export const useGetUpcomingTask = () => {
+export const useGetUpcomingTask = (options = {}) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["upcoming-tasks"],
     queryFn: async () => {
@@ -47,6 +48,7 @@ export const useGetUpcomingTask = () => {
         );
       }
     },
+    ...options,
   });
 
   return {

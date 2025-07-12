@@ -77,17 +77,22 @@ const dashboardItems3 = [
 ];
 
 export default function HomeDashboard() {
-  const { upcomingMeetings, isLoading } = useGetUpcomingMeetings();
-  const { upcomingTasks, isLoading: taskIsLoading } = useGetUpcomingTask();
-
   const [steps, setSteps] = useState(1);
+
+  const { upcomingMeetings, isLoading: meetingIsLoading } =
+    useGetUpcomingMeetings({
+      enabled: steps === 1,
+    });
+  const { upcomingTasks, isLoading: taskIsLoading } = useGetUpcomingTask({
+    enabled: steps === 2,
+  });
 
   console.log("upcomingMeetings", upcomingMeetings);
 
   const content = (steps) => {
     switch (steps) {
       case 1:
-        return !isLoading ? (
+        return !meetingIsLoading ? (
           <>
             {upcomingMeetings?.map((item, idx) => (
               <div
@@ -173,7 +178,7 @@ export default function HomeDashboard() {
         </section>
 
         {/* Sales Update */}
-        {!isLoading && !taskIsLoading && <SalesUpdate />}
+        {!meetingIsLoading && !taskIsLoading && <SalesUpdate />}
       </div>
 
       {/* Right Column */}
