@@ -21,6 +21,7 @@ import "./index.css";
 import { router } from "./routes/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function AppInitializer() {
   useEffect(() => {
@@ -37,8 +38,12 @@ function AppInitializer() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <Toaster />
+      <GoogleOAuthProvider
+        clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID}
+      >
+        <RouterProvider router={router} />
+        <Toaster />
+      </GoogleOAuthProvider>
     </QueryClientProvider>
   );
 }

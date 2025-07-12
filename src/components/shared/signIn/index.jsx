@@ -6,17 +6,34 @@ import ReusableInputField from "../InputField/ReusableInputField";
 import images from "@/constants/images";
 import Google from "@/assets/svg/Google";
 import ReusableCheckboxField from "../InputField/ReusableCheckboxField";
-import { useSignIn } from "@/hooks/api/auth.hook";
+import { useSignIn, useSocialiteLogin } from "@/hooks/api/auth.hook";
 import { Link } from "react-router";
 import { Separator } from "@/components/ui/separator";
+import { useGoogleLogin } from "@react-oauth/google";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
   const { form, mutate, isPending } = useSignIn();
+  const { mutate: socialiteMutate, isPending: socialitePending } =
+    useSocialiteLogin();
 
   const onSubmit = (values) => {
     // handle sign up
     mutate(values);
   };
+
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      // console.log("JWT Token", tokenResponse.access_token);
+      const formData = new FormData();
+      formData.append("provider", "google");
+      formData.append("token", tokenResponse.access_token);
+      socialiteMutate(formData);
+    },
+    onError: () => {
+      toast.error("Login Failed");
+    },
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5f5f7]">
@@ -56,6 +73,7 @@ const SignIn = () => {
                     variant="outline"
                     className="w-full h-11 mt-2 flex items-center justify-center gap-2 border border-gray-200"
                     type="button"
+                    onClick={() => login()}
                   >
                     {/* <FcGoogle className="text-lg" /> */}
                     <Google />

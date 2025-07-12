@@ -31,13 +31,14 @@ axiosPrivate.interceptors.request.use(
   }
 );
 
-// axiosPrivate.interceptors.response.use(
-//   function (response) {
-//     return response;
-//   },
-//   function (error) {
-//     return Promise.reject(error);
-//   }
-// );
+axiosPrivate.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    window.location.href = "/sign-in";
+    return Promise.reject(error);
+  }
+);
 
 export { axiosPrivate, axiosPublic };

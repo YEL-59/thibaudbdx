@@ -6,6 +6,7 @@ import {
   resendOtpSchema,
   signInSchema,
   signUpSchema,
+  socialiteLoginSchema,
 } from "@/schema/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -21,6 +22,7 @@ const verifyOTP = "/auth/verify-otp";
 const resendOTP = "/auth/resend-otp";
 const forgotPassword = "/auth/forget-password";
 const createNewPassword = "/auth/reset-password";
+const socialiteLogin = "/auth/socialite-login";
 
 // const signUp = "/posts";
 // const signIn = "/posts";
@@ -325,6 +327,52 @@ export const useCreateNewPassword = () => {
     },
     onError: (error) => {
       console.log("error", error);
+
+      const message = error?.response?.data?.message || "Failed to create user";
+      if (message.includes("email")) {
+        form.setError("email", { message });
+      } else {
+        toast.error(message);
+      }
+    },
+  });
+  return { form, mutate, isPending };
+};
+
+// Socialite login
+export const useSocialiteLogin = () => {
+  const navigate = useNavigate();
+  const form = useForm({
+    resolver: zodResolver(socialiteLoginSchema),
+    defaultValues: {
+      provider: "",
+      token: "",
+    },
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (formData) => {
+      const { data } = await axiosPublic.post(socialiteLogin, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return data;
+    },
+    onSuccess: (data) => {
+      // console.log("data", data);
+      
+      const token = data?.token;
+      localStorage.setItem("token", token);
+      const user = data?.data;
+      localStorage.setItem("user", JSON.stringify(user));
+      form.reset();
+      toast.success(data?.message || "Success!");
+      navigate("/");
+    },
+    onError: (error) => {
+      // console.log("error", error);
 
       const message = error?.response?.data?.message || "Failed to create user";
       if (message.includes("email")) {

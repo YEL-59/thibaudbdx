@@ -4,9 +4,14 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import "aos/dist/aos.css";
-import { useGetUpcomingMeetings } from "@/hooks/api/home.hook";
+import {
+  useGetUpcomingMeetings,
+  useGetUpcomingTask,
+} from "@/hooks/api/home.hook";
 import { upcoming_meeting, upcoming_tasks } from "@/data/upcomming_data";
 import formatOptionalDateTime from "@/lib/timeformat";
+import { Skeleton } from "@/components/ui/skeleton";
+import SwirlingEffectSpinner from "@/assets/svg/SwirlingEffectSpinner";
 
 const dashboardItems = [
   {
@@ -72,33 +77,46 @@ const dashboardItems3 = [
 ];
 
 export default function HomeDashboard() {
-  const { getUpcomingMeetings, isLoading } = useGetUpcomingMeetings();
+  const { upcomingMeetings, isLoading } = useGetUpcomingMeetings();
+  const { upcomingTasks, isLoading: taskIsLoading } = useGetUpcomingTask();
 
   const [steps, setSteps] = useState(1);
 
-  console.log("getUpcomingMeetings", getUpcomingMeetings);
+  console.log("upcomingMeetings", upcomingMeetings);
 
   const content = (steps) => {
     switch (steps) {
       case 1:
-        return (
+        return !isLoading ? (
           <>
-            {upcoming_meeting?.map((item, idx) => (
-              <div data-aos="fade-up" data-aos-delay={`${idx * 100}`}>
-                <ListCard key={item.id} item={item} idx={idx} />
+            {upcomingMeetings?.map((item, idx) => (
+              <div
+                key={item.id}
+                data-aos="fade-up"
+                data-aos-delay={`${idx * 100}`}
+              >
+                <ListCard item={item} idx={idx} />
               </div>
             ))}
           </>
+        ) : (
+          <div className="flex justify-center items-center h-[50vh]">
+            <SwirlingEffectSpinner />
+          </div>
         );
       case 2:
-        return (
+        return !taskIsLoading ? (
           <>
-            {upcoming_tasks?.map((item, idx) => (
+            {upcomingTasks?.map((item, idx) => (
               <div data-aos="fade-up" data-aos-delay={`${idx * 100}`}>
                 <ListCard key={item.id} item={item} idx={idx} />
               </div>
             ))}
           </>
+        ) : (
+          <div className="flex justify-center items-center h-[50vh]">
+            <SwirlingEffectSpinner />
+          </div>
         );
       case 3:
         return (
@@ -118,7 +136,7 @@ export default function HomeDashboard() {
       {/* Left Column */}
       <div className="space-y-6">
         {/* Tabs + List */}
-        <section className="space-y-4" data-aos="fade-up">
+        <section className="space-y-4">
           {/* Tabs */}
           <div className="flex flex-wrap gap-2 font-['poppins']">
             <Button
@@ -128,7 +146,7 @@ export default function HomeDashboard() {
               }`}
               onClick={() => setSteps(1)}
             >
-              Upcoming Meetings ({upcoming_meeting?.length})
+              Upcoming Meetings ({upcomingMeetings?.length || 0})
             </Button>
             <Button
               variant="outline"
@@ -137,7 +155,7 @@ export default function HomeDashboard() {
               }`}
               onClick={() => setSteps(2)}
             >
-              Upcoming Task ({upcoming_tasks?.length})
+              Upcoming Task ({upcomingTasks?.length || 0})
             </Button>
             <Button
               variant="outline"
@@ -155,7 +173,7 @@ export default function HomeDashboard() {
         </section>
 
         {/* Sales Update */}
-        <SalesUpdate />
+        {!isLoading && !taskIsLoading && <SalesUpdate />}
       </div>
 
       {/* Right Column */}

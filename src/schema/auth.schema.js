@@ -42,3 +42,8 @@ export const createNewPasswordSchema = z
     message: "Password do not match",
     path: ["password_confirmation"],
   });
+
+export const socialiteLoginSchema = z.object({
+  provider: z.string(),
+  token: z.string(),
+});
